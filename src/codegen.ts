@@ -50,11 +50,17 @@ fetch("https://core.telegram.org/bots/api")
     }
     for (let entry of extractTypeDefinitions(document)) {
       const newInterface = sourceFile.addInterface({
-        // Append 'Options' to every type referring to a method. Methods are lowercased.
-        name: /[a-z]/.test(entry.name[0]) ? entry.name + "Options" : entry.name,
+        name: entry.isMethod ? entry.name + "Options" : entry.name,
         docs: entry.description,
         isExported: true,
       });
+
+      if (entry.returnType) {
+        sourceFile.addTypeAlias({
+          name: entry.name + "Result",
+          type: entry.returnType,
+        });
+      }
 
       console.log("Type:", entry.name);
       console.log("Description:", entry.description);
@@ -79,8 +85,20 @@ fetch("https://core.telegram.org/bots/api")
   });
 
 function extractTypeAliases(document: HTMLElement) {
-  const paragraphs = [...document.querySelectorAll("p")].filter((p) =>
-    p.textContent.includes("Currently, it can be one of")
+  const paragraphs = [...document.querySelectorAll("p")].filter(
+    (p) =>
+      p.textContent.includes("Currently, it can be one of") ||
+      p.textContent.includes("Currently, the following") ||
+      p.textContent.includes("It can be one of") ||
+      p.textContent.includes("It should be one of") ||
+      p.textContent.includes(
+        "Telegram clients currently support the following"
+      ) ||
+      p.textContent.includes(
+        "Telegram clients currently support results of the following"
+      ) ||
+      p.textContent.includes("Currently holds no information") ||
+      p.textContent.includes("currently holds no information")
   );
   const nodes = paragraphs.map((p) => {
     return {
@@ -95,12 +113,12 @@ function extractTypeAliases(document: HTMLElement) {
     invariant(node.descriptionNode);
     invariant(node.aliasesNode);
     const name = node.nameNode.textContent;
-    const description = node.descriptionNode.textContent
-      .replaceAll(" Currently, it can be one of", "")
-      .trim();
+    const description = node.descriptionNode.textContent;
     const aliases = [...node.aliasesNode.querySelectorAll("li")].map(
       (li) => li.textContent
     );
+
+    if (aliases.length === 0) aliases.push("Record<string, never>");
     return {
       name,
       description,
@@ -188,10 +206,27 @@ function extractTypeDefinitions(document: HTMLElement) {
         });
       }
 
+      const name = heading.textContent;
+      const isMethod = /[a-z]/.test(name[0]);
+
+      const description = paragraphs.map((p) => p.textContent.trim());
+
+      const allDescription = description.join(" ");
+
+      let returnType: null | string = null;
+
+      const returnTypeTest1 = allDescription.match(/Returns (.*) on success/);
+
+      if (returnTypeTest1) {
+        returnType = returnTypeTest1[1];
+      }
+
       return {
-        name: heading.textContent,
-        description: paragraphs.map((p) => p.textContent.trim()),
+        name,
+        isMethod,
+        description: description,
         parameters,
+        returnType,
       };
     });
 

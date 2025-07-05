@@ -4,28 +4,60 @@ type String = string;
 type Boolean = boolean;
 type InputFile = Blob;
 type True = true;
-/** This object describes paid media. */
+/** This object describes a message that can be inaccessible to the bot. It can be one of */
+type MaybeInaccessibleMessage = Message | InaccessibleMessage;
+/** This object describes the origin of a message. It can be one of */
+type MessageOrigin = MessageOriginUser | MessageOriginHiddenUser | MessageOriginChat | MessageOriginChannel;
+/** This object describes paid media. Currently, it can be one of */
 type PaidMedia = PaidMediaPreview | PaidMediaPhoto | PaidMediaVideo;
-/** This object describes the way a background is filled based on the selected colors. */
+/** This object describes the way a background is filled based on the selected colors. Currently, it can be one of */
 type BackgroundFill = BackgroundFillSolid | BackgroundFillGradient | BackgroundFillFreeformGradient;
-/** This object describes the type of a background. */
+/** This object describes the type of a background. Currently, it can be one of */
 type BackgroundType = BackgroundTypeFill | BackgroundTypeWallpaper | BackgroundTypePattern | BackgroundTypeChatTheme;
-/** Describes the type of a clickable area on a story. */
+/** This object represents a service message about a forum topic closed in the chat. Currently holds no information. */
+type ForumTopicClosed = Record<string, never>;
+/** This object represents a service message about a forum topic reopened in the chat. Currently holds no information. */
+type ForumTopicReopened = Record<string, never>;
+/** This object represents a service message about General forum topic hidden in the chat. Currently holds no information. */
+type GeneralForumTopicHidden = Record<string, never>;
+/** This object represents a service message about General forum topic unhidden in the chat. Currently holds no information. */
+type GeneralForumTopicUnhidden = Record<string, never>;
+/** This object represents a service message about a video chat started in the chat. Currently holds no information. */
+type VideoChatStarted = Record<string, never>;
+/** This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported: */
+type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned;
+/** Describes the type of a clickable area on a story. Currently, it can be one of */
 type StoryAreaType = StoryAreaTypeLocation | StoryAreaTypeSuggestedReaction | StoryAreaTypeLink | StoryAreaTypeWeather | StoryAreaTypeUniqueGift;
-/** This object describes the type of a reaction. */
+/** This object describes the type of a reaction. Currently, it can be one of */
 type ReactionType = ReactionTypeEmoji | ReactionTypeCustomEmoji | ReactionTypePaid;
-/** This object describes a gift received and owned by a user or a chat. */
+/** This object describes a gift received and owned by a user or a chat. Currently, it can be one of */
 type OwnedGift = OwnedGiftRegular | OwnedGiftUnique;
-/** This object describes the paid media to be sent. */
+/** This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported: */
+type BotCommandScope = BotCommandScopeDefault | BotCommandScopeAllPrivateChats | BotCommandScopeAllGroupChats | BotCommandScopeAllChatAdministrators | BotCommandScopeChat | BotCommandScopeChatAdministrators | BotCommandScopeChatMember;
+/** This object describes the bot's menu button in a private chat. It should be one of */
+type MenuButton = MenuButtonCommands | MenuButtonWebApp | MenuButtonDefault;
+/** This object describes the source of a chat boost. It can be one of */
+type ChatBoostSource = ChatBoostSourcePremium | ChatBoostSourceGiftCode | ChatBoostSourceGiveaway;
+/** This object represents the content of a media message to be sent. It should be one of */
+type InputMedia = InputMediaAnimation | InputMediaDocument | InputMediaAudio | InputMediaPhoto | InputMediaVideo;
+/** This object describes the paid media to be sent. Currently, it can be one of */
 type InputPaidMedia = InputPaidMediaPhoto | InputPaidMediaVideo;
-/** This object describes a profile photo to set. */
+/** This object describes a profile photo to set. Currently, it can be one of */
 type InputProfilePhoto = InputProfilePhotoStatic | InputProfilePhotoAnimated;
-/** This object describes the content of a story to post. */
+/** This object describes the content of a story to post. Currently, it can be one of */
 type InputStoryContent = InputStoryContentPhoto | InputStoryContentVideo;
-/** This object describes the state of a revenue withdrawal operation. */
+/** This object represents one result of an inline query. Telegram clients currently support results of the following 20 types: */
+type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedDocument | InlineQueryResultCachedGif | InlineQueryResultCachedMpeg4Gif | InlineQueryResultCachedPhoto | InlineQueryResultCachedSticker | InlineQueryResultCachedVideo | InlineQueryResultCachedVoice | InlineQueryResultArticle | InlineQueryResultAudio | InlineQueryResultContact | InlineQueryResultGame | InlineQueryResultDocument | InlineQueryResultGif | InlineQueryResultLocation | InlineQueryResultMpeg4Gif | InlineQueryResultPhoto | InlineQueryResultVenue | InlineQueryResultVideo | InlineQueryResultVoice;
+/** This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types: */
+type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent;
+/** This object describes the state of a revenue withdrawal operation. Currently, it can be one of */
 type RevenueWithdrawalState = RevenueWithdrawalStatePending | RevenueWithdrawalStateSucceeded | RevenueWithdrawalStateFailed;
-/** This object describes the source of a transaction, or its recipient for outgoing transactions. */
+/** This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of */
 type TransactionPartner = TransactionPartnerUser | TransactionPartnerChat | TransactionPartnerAffiliateProgram | TransactionPartnerFragment | TransactionPartnerTelegramAds | TransactionPartnerTelegramApi | TransactionPartnerOther;
+/** This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of: */
+type PassportElementError = PassportElementErrorDataField | PassportElementErrorFrontSide | PassportElementErrorReverseSide | PassportElementErrorSelfie | PassportElementErrorFile | PassportElementErrorFiles | PassportElementErrorTranslationFile | PassportElementErrorTranslationFiles | PassportElementErrorUnspecified;
+/** A placeholder, currently holds no information. Use BotFather to set up your game. */
+type CallbackGame = Record<string, never>;
 /**
  * This object represents an incoming update.
  * At most one of the optional parameters can be present in any given update.
