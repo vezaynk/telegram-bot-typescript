@@ -1,0 +1,16 @@
+{
+  "name": "telegram-bot-typescript",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "tsx ./src/codegen.ts"
+  },
+  "devDependencies": {
+    "node-html-parser": "^7.0.1",
+    "tiny-invariant": "^1.3.3",
+    "ts-morph": "^26.0.0",
+    "tsx": "^4.20.3",
+    "typescript": "~5.8.3"
+  }
+}
