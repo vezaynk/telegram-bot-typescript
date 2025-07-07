@@ -1,8 +1,16 @@
 {
   "name": "telegram-bot-typescript",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "type": "module",
+  "author": {
+    "email": "slava+npm@knyazev.io",
+    "name": "Slava Knyazev",
+    "url": "https://github.com/vezaynk/telegram-bot-typescript"
+  },
+  "exports": {
+    "types": "./dist/TelegramBotBindings.d.ts"
+  },
   "scripts": {
     "start": "tsx ./src/codegen.ts"
   },
