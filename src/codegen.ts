@@ -11,6 +11,7 @@ fetch("https://core.telegram.org/bots/api")
         outDir: "dist",
         declaration: true,
         emitDeclarationOnly: true,
+        strict: true,
       },
     });
 
@@ -74,10 +75,10 @@ fetch("https://core.telegram.org/bots/api")
       });
 
       if (entry.isMethod && entry.possibleReturnTypes) {
-        const returnTypeName = entry.name + "Result";
+        const returnTypeName = entry.name;
         newInterface.addJsDoc({
-          description: `@see {@link ${returnTypeName}}.`
-        })
+          description: `@see {@link ${returnTypeName}Result} for method output`,
+        });
         returnTypeReconciliation.push({
           name: returnTypeName,
           possibleReturnTypes: entry.possibleReturnTypes,
@@ -124,16 +125,15 @@ fetch("https://core.telegram.org/bots/api")
     );
 
     for (const returnType of filteredReturnTypeReconciliation) {
-      console.log({
-        name: returnType.name,
-        type: returnType.possibleReturnTypes.join(" | "),
-      });
-
-      sourceFile.addTypeAlias({
-        name: returnType.name,
+      const type = sourceFile.addTypeAlias({
+        name: returnType.name + "Result",
         type: returnType.possibleReturnTypes.join(" | "),
         isExported: true,
       });
+
+      type.addJsDoc(
+        `Type returned from {@link ${returnType.name}Options ${returnType.name}} method`
+      );
     }
 
     await project.emit();
@@ -266,6 +266,13 @@ function extractTypeDefinitions(document: HTMLElement) {
         propertyType = propertyType.replaceAll(" and ", " | ");
         propertyType = propertyType.replaceAll(", ", " | ");
 
+        if (propertyName === "type") {
+          const result = /must be (.*)/.exec(propertyDescription);
+          if (result) {
+            const [, match] = result;
+            propertyType = `"${match}"`;
+          }
+        }
         parameters.push({
           description: propertyDescription,
           name: propertyName,

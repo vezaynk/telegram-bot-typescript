@@ -114,6 +114,7 @@ export interface Update {
     removed_chat_boost?: ChatBoostRemoved;
 }
 /** Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects. */
+/** @see {@link getUpdatesResult} for method output */
 export interface getUpdatesOptions {
     /** Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id. The negative offset can be specified to retrieve updates starting from -offset update from the end of the updates queue. All previous updates will be forgotten. */
     offset?: Integer;
@@ -130,6 +131,7 @@ export interface getUpdatesOptions {
 }
 /** Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request (a request with response HTTP status code different from 2XY), we will repeat the request and give up after a reasonable amount of attempts. Returns True on success. */
 /** If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content. */
+/** @see {@link setWebhookResult} for method output */
 export interface setWebhookOptions {
     /** HTTPS URL to send updates to. Use an empty string to remove webhook integration */
     url: String;
@@ -150,6 +152,7 @@ export interface setWebhookOptions {
     secret_token?: String;
 }
 /** Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success. */
+/** @see {@link deleteWebhookResult} for method output */
 export interface deleteWebhookOptions {
     /** Pass True to drop all pending updates */
     drop_pending_updates?: Boolean;
@@ -2488,6 +2491,7 @@ export interface InputStoryContentVideo {
     is_animation?: Boolean;
 }
 /** Use this method to send text messages. On success, the sent Message is returned. */
+/** @see {@link sendMessageResult} for method output */
 export interface sendMessageOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2517,6 +2521,7 @@ export interface sendMessageOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned. */
+/** @see {@link forwardMessageResult} for method output */
 export interface forwardMessageOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -2534,6 +2539,7 @@ export interface forwardMessageOptions {
     message_id: Integer;
 }
 /** Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned. */
+/** @see {@link forwardMessagesResult} for method output */
 export interface forwardMessagesOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -2549,6 +2555,7 @@ export interface forwardMessagesOptions {
     protect_content?: Boolean;
 }
 /** Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success. */
+/** @see {@link copyMessageResult} for method output */
 export interface copyMessageOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -2580,6 +2587,7 @@ export interface copyMessageOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned. */
+/** @see {@link copyMessagesResult} for method output */
 export interface copyMessagesOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -2597,6 +2605,7 @@ export interface copyMessagesOptions {
     remove_caption?: Boolean;
 }
 /** Use this method to send photos. On success, the sent Message is returned. */
+/** @see {@link sendPhotoResult} for method output */
 export interface sendPhotoOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2631,6 +2640,7 @@ export interface sendPhotoOptions {
 }
 /** Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future. */
 /** For sending voice messages, use the sendVoice method instead. */
+/** @see {@link sendAudioResult} for method output */
 export interface sendAudioOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2668,6 +2678,7 @@ export interface sendAudioOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future. */
+/** @see {@link sendDocumentResult} for method output */
 export interface sendDocumentOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2701,6 +2712,7 @@ export interface sendDocumentOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future. */
+/** @see {@link sendVideoResult} for method output */
 export interface sendVideoOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2748,6 +2760,7 @@ export interface sendVideoOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future. */
+/** @see {@link sendAnimationResult} for method output */
 export interface sendAnimationOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2789,6 +2802,7 @@ export interface sendAnimationOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future. */
+/** @see {@link sendVoiceResult} for method output */
 export interface sendVoiceOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2820,6 +2834,7 @@ export interface sendVoiceOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned. */
+/** @see {@link sendVideoNoteResult} for method output */
 export interface sendVideoNoteOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2849,6 +2864,7 @@ export interface sendVideoNoteOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send paid media. On success, the sent Message is returned. */
+/** @see {@link sendPaidMediaResult} for method output */
 export interface sendPaidMediaOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2880,6 +2896,7 @@ export interface sendPaidMediaOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned. */
+/** @see {@link sendMediaGroupResult} for method output */
 export interface sendMediaGroupOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2901,6 +2918,7 @@ export interface sendMediaGroupOptions {
     reply_parameters?: ReplyParameters;
 }
 /** Use this method to send point on the map. On success, the sent Message is returned. */
+/** @see {@link sendLocationResult} for method output */
 export interface sendLocationOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2934,6 +2952,7 @@ export interface sendLocationOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send information about a venue. On success, the sent Message is returned. */
+/** @see {@link sendVenueResult} for method output */
 export interface sendVenueOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -2971,6 +2990,7 @@ export interface sendVenueOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send phone contacts. On success, the sent Message is returned. */
+/** @see {@link sendContactResult} for method output */
 export interface sendContactOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -3000,6 +3020,7 @@ export interface sendContactOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send a native poll. On success, the sent Message is returned. */
+/** @see {@link sendPollResult} for method output */
 export interface sendPollOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -3049,6 +3070,7 @@ export interface sendPollOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to send a checklist on behalf of a connected business account. On success, the sent Message is returned. */
+/** @see {@link sendChecklistResult} for method output */
 export interface sendChecklistOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id: String;
@@ -3068,6 +3090,7 @@ export interface sendChecklistOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned. */
+/** @see {@link sendDiceResult} for method output */
 export interface sendDiceOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -3092,6 +3115,7 @@ export interface sendDiceOptions {
 }
 /** Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success. */
 /** We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive. */
+/** @see {@link sendChatActionResult} for method output */
 export interface sendChatActionOptions {
     /** Unique identifier of the business connection on behalf of which the action will be sent */
     business_connection_id?: String;
@@ -3103,6 +3127,7 @@ export interface sendChatActionOptions {
     action: String;
 }
 /** Use this method to change the chosen reactions on a message. Service messages of some types can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns True on success. */
+/** @see {@link setMessageReactionResult} for method output */
 export interface setMessageReactionOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3114,6 +3139,7 @@ export interface setMessageReactionOptions {
     is_big?: Boolean;
 }
 /** Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object. */
+/** @see {@link getUserProfilePhotosResult} for method output */
 export interface getUserProfilePhotosOptions {
     /** Unique identifier of the target user */
     user_id: Integer;
@@ -3123,6 +3149,7 @@ export interface getUserProfilePhotosOptions {
     limit?: Integer;
 }
 /** Changes the emoji status for a given user that previously allowed the bot to manage their emoji status via the Mini App method requestEmojiStatusAccess. Returns True on success. */
+/** @see {@link setUserEmojiStatusResult} for method output */
 export interface setUserEmojiStatusOptions {
     /** Unique identifier of the target user */
     user_id: Integer;
@@ -3132,11 +3159,13 @@ export interface setUserEmojiStatusOptions {
     emoji_status_expiration_date?: Integer;
 }
 /** Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again. */
+/** @see {@link getFileResult} for method output */
 export interface getFileOptions {
     /** File identifier to get information about */
     file_id: String;
 }
 /** Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link banChatMemberResult} for method output */
 export interface banChatMemberOptions {
     /** Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3148,6 +3177,7 @@ export interface banChatMemberOptions {
     revoke_messages?: Boolean;
 }
 /** Use this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success. */
+/** @see {@link unbanChatMemberResult} for method output */
 export interface unbanChatMemberOptions {
     /** Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3157,6 +3187,7 @@ export interface unbanChatMemberOptions {
     only_if_banned?: Boolean;
 }
 /** Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success. */
+/** @see {@link restrictChatMemberResult} for method output */
 export interface restrictChatMemberOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3170,6 +3201,7 @@ export interface restrictChatMemberOptions {
     until_date?: Integer;
 }
 /** Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success. */
+/** @see {@link promoteChatMemberResult} for method output */
 export interface promoteChatMemberOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3207,6 +3239,7 @@ export interface promoteChatMemberOptions {
     can_manage_topics?: Boolean;
 }
 /** Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success. */
+/** @see {@link setChatAdministratorCustomTitleResult} for method output */
 export interface setChatAdministratorCustomTitleOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3216,6 +3249,7 @@ export interface setChatAdministratorCustomTitleOptions {
     custom_title: String;
 }
 /** Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link banChatSenderChatResult} for method output */
 export interface banChatSenderChatOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3223,6 +3257,7 @@ export interface banChatSenderChatOptions {
     sender_chat_id: Integer;
 }
 /** Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link unbanChatSenderChatResult} for method output */
 export interface unbanChatSenderChatOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3230,6 +3265,7 @@ export interface unbanChatSenderChatOptions {
     sender_chat_id: Integer;
 }
 /** Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success. */
+/** @see {@link setChatPermissionsResult} for method output */
 export interface setChatPermissionsOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3239,11 +3275,13 @@ export interface setChatPermissionsOptions {
     use_independent_chat_permissions?: Boolean;
 }
 /** Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success. */
+/** @see {@link exportChatInviteLinkResult} for method output */
 export interface exportChatInviteLinkOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object. */
+/** @see {@link createChatInviteLinkResult} for method output */
 export interface createChatInviteLinkOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3257,6 +3295,7 @@ export interface createChatInviteLinkOptions {
     creates_join_request?: Boolean;
 }
 /** Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object. */
+/** @see {@link editChatInviteLinkResult} for method output */
 export interface editChatInviteLinkOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3272,6 +3311,7 @@ export interface editChatInviteLinkOptions {
     creates_join_request?: Boolean;
 }
 /** Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns the new invite link as a ChatInviteLink object. */
+/** @see {@link createChatSubscriptionInviteLinkResult} for method output */
 export interface createChatSubscriptionInviteLinkOptions {
     /** Unique identifier for the target channel chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3283,6 +3323,7 @@ export interface createChatSubscriptionInviteLinkOptions {
     subscription_price: Integer;
 }
 /** Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object. */
+/** @see {@link editChatSubscriptionInviteLinkResult} for method output */
 export interface editChatSubscriptionInviteLinkOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3292,6 +3333,7 @@ export interface editChatSubscriptionInviteLinkOptions {
     name?: String;
 }
 /** Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object. */
+/** @see {@link revokeChatInviteLinkResult} for method output */
 export interface revokeChatInviteLinkOptions {
     /** Unique identifier of the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3299,6 +3341,7 @@ export interface revokeChatInviteLinkOptions {
     invite_link: String;
 }
 /** Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success. */
+/** @see {@link approveChatJoinRequestResult} for method output */
 export interface approveChatJoinRequestOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3306,6 +3349,7 @@ export interface approveChatJoinRequestOptions {
     user_id: Integer;
 }
 /** Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success. */
+/** @see {@link declineChatJoinRequestResult} for method output */
 export interface declineChatJoinRequestOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3313,6 +3357,7 @@ export interface declineChatJoinRequestOptions {
     user_id: Integer;
 }
 /** Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link setChatPhotoResult} for method output */
 export interface setChatPhotoOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3320,11 +3365,13 @@ export interface setChatPhotoOptions {
     photo: InputFile;
 }
 /** Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link deleteChatPhotoResult} for method output */
 export interface deleteChatPhotoOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link setChatTitleResult} for method output */
 export interface setChatTitleOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3332,6 +3379,7 @@ export interface setChatTitleOptions {
     title: String;
 }
 /** Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success. */
+/** @see {@link setChatDescriptionResult} for method output */
 export interface setChatDescriptionOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3339,6 +3387,7 @@ export interface setChatDescriptionOptions {
     description?: String;
 }
 /** Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success. */
+/** @see {@link pinChatMessageResult} for method output */
 export interface pinChatMessageOptions {
     /** Unique identifier of the business connection on behalf of which the message will be pinned */
     business_connection_id?: String;
@@ -3350,6 +3399,7 @@ export interface pinChatMessageOptions {
     disable_notification?: Boolean;
 }
 /** Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success. */
+/** @see {@link unpinChatMessageResult} for method output */
 export interface unpinChatMessageOptions {
     /** Unique identifier of the business connection on behalf of which the message will be unpinned */
     business_connection_id?: String;
@@ -3359,31 +3409,37 @@ export interface unpinChatMessageOptions {
     message_id?: Integer;
 }
 /** Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success. */
+/** @see {@link unpinAllChatMessagesResult} for method output */
 export interface unpinAllChatMessagesOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method for your bot to leave a group, supergroup or channel. Returns True on success. */
+/** @see {@link leaveChatResult} for method output */
 export interface leaveChatOptions {
     /** Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method to get up-to-date information about the chat. Returns a ChatFullInfo object on success. */
+/** @see {@link getChatResult} for method output */
 export interface getChatOptions {
     /** Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects. */
+/** @see {@link getChatAdministratorsResult} for method output */
 export interface getChatAdministratorsOptions {
     /** Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method to get the number of members in a chat. Returns Int on success. */
+/** @see {@link getChatMemberCountResult} for method output */
 export interface getChatMemberCountOptions {
     /** Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a ChatMember object on success. */
+/** @see {@link getChatMemberResult} for method output */
 export interface getChatMemberOptions {
     /** Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3391,6 +3447,7 @@ export interface getChatMemberOptions {
     user_id: Integer;
 }
 /** Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success. */
+/** @see {@link setChatStickerSetResult} for method output */
 export interface setChatStickerSetOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3398,11 +3455,13 @@ export interface setChatStickerSetOptions {
     sticker_set_name: String;
 }
 /** Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success. */
+/** @see {@link deleteChatStickerSetResult} for method output */
 export interface deleteChatStickerSetOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object. */
+/** @see {@link createForumTopicResult} for method output */
 export interface createForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3414,6 +3473,7 @@ export interface createForumTopicOptions {
     icon_custom_emoji_id?: String;
 }
 /** Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success. */
+/** @see {@link editForumTopicResult} for method output */
 export interface editForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3425,6 +3485,7 @@ export interface editForumTopicOptions {
     icon_custom_emoji_id?: String;
 }
 /** Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success. */
+/** @see {@link closeForumTopicResult} for method output */
 export interface closeForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3432,6 +3493,7 @@ export interface closeForumTopicOptions {
     message_thread_id: Integer;
 }
 /** Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success. */
+/** @see {@link reopenForumTopicResult} for method output */
 export interface reopenForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3439,6 +3501,7 @@ export interface reopenForumTopicOptions {
     message_thread_id: Integer;
 }
 /** Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success. */
+/** @see {@link deleteForumTopicResult} for method output */
 export interface deleteForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3446,6 +3509,7 @@ export interface deleteForumTopicOptions {
     message_thread_id: Integer;
 }
 /** Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success. */
+/** @see {@link unpinAllForumTopicMessagesResult} for method output */
 export interface unpinAllForumTopicMessagesOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3453,6 +3517,7 @@ export interface unpinAllForumTopicMessagesOptions {
     message_thread_id: Integer;
 }
 /** Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success. */
+/** @see {@link editGeneralForumTopicResult} for method output */
 export interface editGeneralForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
@@ -3460,31 +3525,37 @@ export interface editGeneralForumTopicOptions {
     name: String;
 }
 /** Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success. */
+/** @see {@link closeGeneralForumTopicResult} for method output */
 export interface closeGeneralForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success. */
+/** @see {@link reopenGeneralForumTopicResult} for method output */
 export interface reopenGeneralForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success. */
+/** @see {@link hideGeneralForumTopicResult} for method output */
 export interface hideGeneralForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success. */
+/** @see {@link unhideGeneralForumTopicResult} for method output */
 export interface unhideGeneralForumTopicOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success. */
+/** @see {@link unpinAllGeneralForumTopicMessagesResult} for method output */
 export interface unpinAllGeneralForumTopicMessagesOptions {
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned. */
+/** @see {@link answerCallbackQueryResult} for method output */
 export interface answerCallbackQueryOptions {
     /** Unique identifier for the query to be answered */
     callback_query_id: String;
@@ -3502,6 +3573,7 @@ export interface answerCallbackQueryOptions {
     cache_time?: Integer;
 }
 /** Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object. */
+/** @see {@link getUserChatBoostsResult} for method output */
 export interface getUserChatBoostsOptions {
     /** Unique identifier for the chat or username of the channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3509,11 +3581,13 @@ export interface getUserChatBoostsOptions {
     user_id: Integer;
 }
 /** Use this method to get information about the connection of the bot with a business account. Returns a BusinessConnection object on success. */
+/** @see {@link getBusinessConnectionResult} for method output */
 export interface getBusinessConnectionOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
 }
 /** Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success. */
+/** @see {@link setMyCommandsResult} for method output */
 export interface setMyCommandsOptions {
     /** A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified. */
     commands: BotCommand[];
@@ -3523,6 +3597,7 @@ export interface setMyCommandsOptions {
     language_code?: String;
 }
 /** Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success. */
+/** @see {@link deleteMyCommandsResult} for method output */
 export interface deleteMyCommandsOptions {
     /** A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault. */
     scope?: BotCommandScope;
@@ -3530,6 +3605,7 @@ export interface deleteMyCommandsOptions {
     language_code?: String;
 }
 /** Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned. */
+/** @see {@link getMyCommandsResult} for method output */
 export interface getMyCommandsOptions {
     /** A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault. */
     scope?: BotCommandScope;
@@ -3537,6 +3613,7 @@ export interface getMyCommandsOptions {
     language_code?: String;
 }
 /** Use this method to change the bot's name. Returns True on success. */
+/** @see {@link setMyNameResult} for method output */
 export interface setMyNameOptions {
     /** New bot name; 0-64 characters. Pass an empty string to remove the dedicated name for the given language. */
     name?: String;
@@ -3544,11 +3621,13 @@ export interface setMyNameOptions {
     language_code?: String;
 }
 /** Use this method to get the current bot name for the given user language. Returns BotName on success. */
+/** @see {@link getMyNameResult} for method output */
 export interface getMyNameOptions {
     /** A two-letter ISO 639-1 language code or an empty string */
     language_code?: String;
 }
 /** Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success. */
+/** @see {@link setMyDescriptionResult} for method output */
 export interface setMyDescriptionOptions {
     /** New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language. */
     description?: String;
@@ -3556,11 +3635,13 @@ export interface setMyDescriptionOptions {
     language_code?: String;
 }
 /** Use this method to get the current bot description for the given user language. Returns BotDescription on success. */
+/** @see {@link getMyDescriptionResult} for method output */
 export interface getMyDescriptionOptions {
     /** A two-letter ISO 639-1 language code or an empty string */
     language_code?: String;
 }
 /** Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success. */
+/** @see {@link setMyShortDescriptionResult} for method output */
 export interface setMyShortDescriptionOptions {
     /** New short description for the bot; 0-120 characters. Pass an empty string to remove the dedicated short description for the given language. */
     short_description?: String;
@@ -3568,11 +3649,13 @@ export interface setMyShortDescriptionOptions {
     language_code?: String;
 }
 /** Use this method to get the current bot short description for the given user language. Returns BotShortDescription on success. */
+/** @see {@link getMyShortDescriptionResult} for method output */
 export interface getMyShortDescriptionOptions {
     /** A two-letter ISO 639-1 language code or an empty string */
     language_code?: String;
 }
 /** Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success. */
+/** @see {@link setChatMenuButtonResult} for method output */
 export interface setChatMenuButtonOptions {
     /** Unique identifier for the target private chat. If not specified, default bot's menu button will be changed */
     chat_id?: Integer;
@@ -3580,11 +3663,13 @@ export interface setChatMenuButtonOptions {
     menu_button?: MenuButton;
 }
 /** Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success. */
+/** @see {@link getChatMenuButtonResult} for method output */
 export interface getChatMenuButtonOptions {
     /** Unique identifier for the target private chat. If not specified, default bot's menu button will be returned */
     chat_id?: Integer;
 }
 /** Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns True on success. */
+/** @see {@link setMyDefaultAdministratorRightsResult} for method output */
 export interface setMyDefaultAdministratorRightsOptions {
     /** A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared. */
     rights?: ChatAdministratorRights;
@@ -3592,11 +3677,13 @@ export interface setMyDefaultAdministratorRightsOptions {
     for_channels?: Boolean;
 }
 /** Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success. */
+/** @see {@link getMyDefaultAdministratorRightsResult} for method output */
 export interface getMyDefaultAdministratorRightsOptions {
     /** Pass True to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned. */
     for_channels?: Boolean;
 }
 /** Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent. */
+/** @see {@link editMessageTextResult} for method output */
 export interface editMessageTextOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3618,6 +3705,7 @@ export interface editMessageTextOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent. */
+/** @see {@link editMessageCaptionResult} for method output */
 export interface editMessageCaptionOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3639,6 +3727,7 @@ export interface editMessageCaptionOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent. */
+/** @see {@link editMessageMediaResult} for method output */
 export interface editMessageMediaOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3654,6 +3743,7 @@ export interface editMessageMediaOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. */
+/** @see {@link editMessageLiveLocationResult} for method output */
 export interface editMessageLiveLocationOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3679,6 +3769,7 @@ export interface editMessageLiveLocationOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned. */
+/** @see {@link stopMessageLiveLocationResult} for method output */
 export interface stopMessageLiveLocationOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3692,6 +3783,7 @@ export interface stopMessageLiveLocationOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to edit a checklist on behalf of a connected business account. On success, the edited Message is returned. */
+/** @see {@link editMessageChecklistResult} for method output */
 export interface editMessageChecklistOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id: String;
@@ -3705,6 +3797,7 @@ export interface editMessageChecklistOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent. */
+/** @see {@link editMessageReplyMarkupResult} for method output */
 export interface editMessageReplyMarkupOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3718,6 +3811,7 @@ export interface editMessageReplyMarkupOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned. */
+/** @see {@link stopPollResult} for method output */
 export interface stopPollOptions {
     /** Unique identifier of the business connection on behalf of which the message to be edited was sent */
     business_connection_id?: String;
@@ -3740,6 +3834,7 @@ export interface stopPollOptions {
  * - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
  * Returns True on success.
  */
+/** @see {@link deleteMessageResult} for method output */
 export interface deleteMessageOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3747,6 +3842,7 @@ export interface deleteMessageOptions {
     message_id: Integer;
 }
 /** Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns True on success. */
+/** @see {@link deleteMessagesResult} for method output */
 export interface deleteMessagesOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3754,6 +3850,7 @@ export interface deleteMessagesOptions {
     message_ids: Integer[];
 }
 /** Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns True on success. */
+/** @see {@link sendGiftResult} for method output */
 export interface sendGiftOptions {
     /** Required if chat_id is not specified. Unique identifier of the target user who will receive the gift. */
     user_id?: Integer;
@@ -3771,6 +3868,7 @@ export interface sendGiftOptions {
     text_entities?: MessageEntity[];
 }
 /** Gifts a Telegram Premium subscription to the given user. Returns True on success. */
+/** @see {@link giftPremiumSubscriptionResult} for method output */
 export interface giftPremiumSubscriptionOptions {
     /** Unique identifier of the target user who will receive a Telegram Premium subscription */
     user_id: Integer;
@@ -3786,6 +3884,7 @@ export interface giftPremiumSubscriptionOptions {
     text_entities?: MessageEntity[];
 }
 /** Verifies a user on behalf of the organization which is represented by the bot. Returns True on success. */
+/** @see {@link verifyUserResult} for method output */
 export interface verifyUserOptions {
     /** Unique identifier of the target user */
     user_id: Integer;
@@ -3793,6 +3892,7 @@ export interface verifyUserOptions {
     custom_description?: String;
 }
 /** Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success. */
+/** @see {@link verifyChatResult} for method output */
 export interface verifyChatOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -3800,16 +3900,19 @@ export interface verifyChatOptions {
     custom_description?: String;
 }
 /** Removes verification from a user who is currently verified on behalf of the organization represented by the bot. Returns True on success. */
+/** @see {@link removeUserVerificationResult} for method output */
 export interface removeUserVerificationOptions {
     /** Unique identifier of the target user */
     user_id: Integer;
 }
 /** Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success. */
+/** @see {@link removeChatVerificationResult} for method output */
 export interface removeChatVerificationOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
 }
 /** Marks incoming message as read on behalf of a business account. Requires the can_read_messages business bot right. Returns True on success. */
+/** @see {@link readBusinessMessageResult} for method output */
 export interface readBusinessMessageOptions {
     /** Unique identifier of the business connection on behalf of which to read the message */
     business_connection_id: String;
@@ -3819,6 +3922,7 @@ export interface readBusinessMessageOptions {
     message_id: Integer;
 }
 /** Delete messages on behalf of a business account. Requires the can_delete_sent_messages business bot right to delete messages sent by the bot itself, or the can_delete_all_messages business bot right to delete any message. Returns True on success. */
+/** @see {@link deleteBusinessMessagesResult} for method output */
 export interface deleteBusinessMessagesOptions {
     /** Unique identifier of the business connection on behalf of which to delete the messages */
     business_connection_id: String;
@@ -3826,6 +3930,7 @@ export interface deleteBusinessMessagesOptions {
     message_ids: Integer[];
 }
 /** Changes the first and last name of a managed business account. Requires the can_change_name business bot right. Returns True on success. */
+/** @see {@link setBusinessAccountNameResult} for method output */
 export interface setBusinessAccountNameOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3835,6 +3940,7 @@ export interface setBusinessAccountNameOptions {
     last_name?: String;
 }
 /** Changes the username of a managed business account. Requires the can_change_username business bot right. Returns True on success. */
+/** @see {@link setBusinessAccountUsernameResult} for method output */
 export interface setBusinessAccountUsernameOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3842,6 +3948,7 @@ export interface setBusinessAccountUsernameOptions {
     username?: String;
 }
 /** Changes the bio of a managed business account. Requires the can_change_bio business bot right. Returns True on success. */
+/** @see {@link setBusinessAccountBioResult} for method output */
 export interface setBusinessAccountBioOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3849,6 +3956,7 @@ export interface setBusinessAccountBioOptions {
     bio?: String;
 }
 /** Changes the profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success. */
+/** @see {@link setBusinessAccountProfilePhotoResult} for method output */
 export interface setBusinessAccountProfilePhotoOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3858,6 +3966,7 @@ export interface setBusinessAccountProfilePhotoOptions {
     is_public?: Boolean;
 }
 /** Removes the current profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success. */
+/** @see {@link removeBusinessAccountProfilePhotoResult} for method output */
 export interface removeBusinessAccountProfilePhotoOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3865,6 +3974,7 @@ export interface removeBusinessAccountProfilePhotoOptions {
     is_public?: Boolean;
 }
 /** Changes the privacy settings pertaining to incoming gifts in a managed business account. Requires the can_change_gift_settings business bot right. Returns True on success. */
+/** @see {@link setBusinessAccountGiftSettingsResult} for method output */
 export interface setBusinessAccountGiftSettingsOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3874,11 +3984,13 @@ export interface setBusinessAccountGiftSettingsOptions {
     accepted_gift_types: AcceptedGiftTypes;
 }
 /** Returns the amount of Telegram Stars owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns StarAmount on success. */
+/** @see {@link getBusinessAccountStarBalanceResult} for method output */
 export interface getBusinessAccountStarBalanceOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
 }
 /** Transfers Telegram Stars from the business account balance to the bot's balance. Requires the can_transfer_stars business bot right. Returns True on success. */
+/** @see {@link transferBusinessAccountStarsResult} for method output */
 export interface transferBusinessAccountStarsOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3886,6 +3998,7 @@ export interface transferBusinessAccountStarsOptions {
     star_count: Integer;
 }
 /** Returns the gifts received and owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns OwnedGifts on success. */
+/** @see {@link getBusinessAccountGiftsResult} for method output */
 export interface getBusinessAccountGiftsOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3907,6 +4020,7 @@ export interface getBusinessAccountGiftsOptions {
     limit?: Integer;
 }
 /** Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars business bot right. Returns True on success. */
+/** @see {@link convertGiftToStarsResult} for method output */
 export interface convertGiftToStarsOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3914,6 +4028,7 @@ export interface convertGiftToStarsOptions {
     owned_gift_id: String;
 }
 /** Upgrades a given regular gift to a unique gift. Requires the can_transfer_and_upgrade_gifts business bot right. Additionally requires the can_transfer_stars business bot right if the upgrade is paid. Returns True on success. */
+/** @see {@link upgradeGiftResult} for method output */
 export interface upgradeGiftOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3925,6 +4040,7 @@ export interface upgradeGiftOptions {
     star_count?: Integer;
 }
 /** Transfers an owned unique gift to another user. Requires the can_transfer_and_upgrade_gifts business bot right. Requires can_transfer_stars business bot right if the transfer is paid. Returns True on success. */
+/** @see {@link transferGiftResult} for method output */
 export interface transferGiftOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3936,6 +4052,7 @@ export interface transferGiftOptions {
     star_count?: Integer;
 }
 /** Posts a story on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success. */
+/** @see {@link postStoryResult} for method output */
 export interface postStoryOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3957,6 +4074,7 @@ export interface postStoryOptions {
     protect_content?: Boolean;
 }
 /** Edits a story previously posted by the bot on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns Story on success. */
+/** @see {@link editStoryResult} for method output */
 export interface editStoryOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -3974,6 +4092,7 @@ export interface editStoryOptions {
     areas?: StoryArea[];
 }
 /** Deletes a story previously posted by the bot on behalf of a managed business account. Requires the can_manage_stories business bot right. Returns True on success. */
+/** @see {@link deleteStoryResult} for method output */
 export interface deleteStoryOptions {
     /** Unique identifier of the business connection */
     business_connection_id: String;
@@ -4051,6 +4170,7 @@ export interface InputSticker {
     keywords?: String[];
 }
 /** Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned. */
+/** @see {@link sendStickerResult} for method output */
 export interface sendStickerOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -4076,16 +4196,19 @@ export interface sendStickerOptions {
     reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 /** Use this method to get a sticker set. On success, a StickerSet object is returned. */
+/** @see {@link getStickerSetResult} for method output */
 export interface getStickerSetOptions {
     /** Name of the sticker set */
     name: String;
 }
 /** Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects. */
+/** @see {@link getCustomEmojiStickersResult} for method output */
 export interface getCustomEmojiStickersOptions {
     /** A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified. */
     custom_emoji_ids: String[];
 }
 /** Use this method to upload a file with a sticker for later use in the createNewStickerSet, addStickerToSet, or replaceStickerInSet methods (the file can be used multiple times). Returns the uploaded File on success. */
+/** @see {@link uploadStickerFileResult} for method output */
 export interface uploadStickerFileOptions {
     /** User identifier of sticker file owner */
     user_id: Integer;
@@ -4095,6 +4218,7 @@ export interface uploadStickerFileOptions {
     sticker_format: String;
 }
 /** Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success. */
+/** @see {@link createNewStickerSetResult} for method output */
 export interface createNewStickerSetOptions {
     /** User identifier of created sticker set owner */
     user_id: Integer;
@@ -4110,6 +4234,7 @@ export interface createNewStickerSetOptions {
     needs_repainting?: Boolean;
 }
 /** Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns True on success. */
+/** @see {@link addStickerToSetResult} for method output */
 export interface addStickerToSetOptions {
     /** User identifier of sticker set owner */
     user_id: Integer;
@@ -4119,6 +4244,7 @@ export interface addStickerToSetOptions {
     sticker: InputSticker;
 }
 /** Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success. */
+/** @see {@link setStickerPositionInSetResult} for method output */
 export interface setStickerPositionInSetOptions {
     /** File identifier of the sticker */
     sticker: String;
@@ -4126,11 +4252,13 @@ export interface setStickerPositionInSetOptions {
     position: Integer;
 }
 /** Use this method to delete a sticker from a set created by the bot. Returns True on success. */
+/** @see {@link deleteStickerFromSetResult} for method output */
 export interface deleteStickerFromSetOptions {
     /** File identifier of the sticker */
     sticker: String;
 }
 /** Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns True on success. */
+/** @see {@link replaceStickerInSetResult} for method output */
 export interface replaceStickerInSetOptions {
     /** User identifier of the sticker set owner */
     user_id: Integer;
@@ -4142,6 +4270,7 @@ export interface replaceStickerInSetOptions {
     sticker: InputSticker;
 }
 /** Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success. */
+/** @see {@link setStickerEmojiListResult} for method output */
 export interface setStickerEmojiListOptions {
     /** File identifier of the sticker */
     sticker: String;
@@ -4149,6 +4278,7 @@ export interface setStickerEmojiListOptions {
     emoji_list: String[];
 }
 /** Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success. */
+/** @see {@link setStickerKeywordsResult} for method output */
 export interface setStickerKeywordsOptions {
     /** File identifier of the sticker */
     sticker: String;
@@ -4156,6 +4286,7 @@ export interface setStickerKeywordsOptions {
     keywords?: String[];
 }
 /** Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success. */
+/** @see {@link setStickerMaskPositionResult} for method output */
 export interface setStickerMaskPositionOptions {
     /** File identifier of the sticker */
     sticker: String;
@@ -4163,6 +4294,7 @@ export interface setStickerMaskPositionOptions {
     mask_position?: MaskPosition;
 }
 /** Use this method to set the title of a created sticker set. Returns True on success. */
+/** @see {@link setStickerSetTitleResult} for method output */
 export interface setStickerSetTitleOptions {
     /** Sticker set name */
     name: String;
@@ -4170,6 +4302,7 @@ export interface setStickerSetTitleOptions {
     title: String;
 }
 /** Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns True on success. */
+/** @see {@link setStickerSetThumbnailResult} for method output */
 export interface setStickerSetThumbnailOptions {
     /** Sticker set name */
     name: String;
@@ -4181,6 +4314,7 @@ export interface setStickerSetThumbnailOptions {
     format: String;
 }
 /** Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success. */
+/** @see {@link setCustomEmojiStickerSetThumbnailResult} for method output */
 export interface setCustomEmojiStickerSetThumbnailOptions {
     /** Sticker set name */
     name: String;
@@ -4188,6 +4322,7 @@ export interface setCustomEmojiStickerSetThumbnailOptions {
     custom_emoji_id?: String;
 }
 /** Use this method to delete a sticker set that was created by the bot. Returns True on success. */
+/** @see {@link deleteStickerSetResult} for method output */
 export interface deleteStickerSetOptions {
     /** Sticker set name */
     name: String;
@@ -4211,6 +4346,7 @@ export interface InlineQuery {
  * Use this method to send answers to an inline query. On success, True is returned.
  * No more than 50 results per query are allowed.
  */
+/** @see {@link answerInlineQueryResult} for method output */
 export interface answerInlineQueryOptions {
     /** Unique identifier for the answered query */
     inline_query_id: String;
@@ -4857,6 +4993,7 @@ export interface ChosenInlineResult {
     query: String;
 }
 /** Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned. */
+/** @see {@link answerWebAppQueryResult} for method output */
 export interface answerWebAppQueryOptions {
     /** Unique identifier for the query to be answered */
     web_app_query_id: String;
@@ -4869,6 +5006,7 @@ export interface SentWebAppMessage {
     inline_message_id?: String;
 }
 /** Stores a message that can be sent by a user of a Mini App. Returns a PreparedInlineMessage object. */
+/** @see {@link savePreparedInlineMessageResult} for method output */
 export interface savePreparedInlineMessageOptions {
     /** Unique identifier of the target user that can use the prepared message */
     user_id: Integer;
@@ -4891,6 +5029,7 @@ export interface PreparedInlineMessage {
     expiration_date: Integer;
 }
 /** Use this method to send invoices. On success, the sent Message is returned. */
+/** @see {@link sendInvoiceResult} for method output */
 export interface sendInvoiceOptions {
     /** Unique identifier for the target chat or username of the target channel (in the format @channelusername) */
     chat_id: Integer | String;
@@ -4952,6 +5091,7 @@ export interface sendInvoiceOptions {
     reply_markup?: InlineKeyboardMarkup;
 }
 /** Use this method to create a link for an invoice. Returns the created invoice link as String on success. */
+/** @see {@link createInvoiceLinkResult} for method output */
 export interface createInvoiceLinkOptions {
     /** Unique identifier of the business connection on behalf of which the link will be created. For payments in Telegram Stars only. */
     business_connection_id?: String;
@@ -4999,6 +5139,7 @@ export interface createInvoiceLinkOptions {
     is_flexible?: Boolean;
 }
 /** If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned. */
+/** @see {@link answerShippingQueryResult} for method output */
 export interface answerShippingQueryOptions {
     /** Unique identifier for the query to be answered */
     shipping_query_id: String;
@@ -5010,6 +5151,7 @@ export interface answerShippingQueryOptions {
     error_message?: String;
 }
 /** Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent. */
+/** @see {@link answerPreCheckoutQueryResult} for method output */
 export interface answerPreCheckoutQueryOptions {
     /** Unique identifier for the query to be answered */
     pre_checkout_query_id: String;
@@ -5019,6 +5161,7 @@ export interface answerPreCheckoutQueryOptions {
     error_message?: String;
 }
 /** Returns the bot's Telegram Star transactions in chronological order. On success, returns a StarTransactions object. */
+/** @see {@link getStarTransactionsResult} for method output */
 export interface getStarTransactionsOptions {
     /** Number of transactions to skip in the response */
     offset?: Integer;
@@ -5026,6 +5169,7 @@ export interface getStarTransactionsOptions {
     limit?: Integer;
 }
 /** Refunds a successful payment in Telegram Stars. Returns True on success. */
+/** @see {@link refundStarPaymentResult} for method output */
 export interface refundStarPaymentOptions {
     /** Identifier of the user whose payment will be refunded */
     user_id: Integer;
@@ -5033,6 +5177,7 @@ export interface refundStarPaymentOptions {
     telegram_payment_charge_id: String;
 }
 /** Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns True on success. */
+/** @see {@link editUserStarSubscriptionResult} for method output */
 export interface editUserStarSubscriptionOptions {
     /** Identifier of the user whose subscription will be edited */
     user_id: Integer;
@@ -5336,6 +5481,7 @@ export interface EncryptedCredentials {
 }
 /** Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success. */
 /** Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues. */
+/** @see {@link setPassportDataErrorsResult} for method output */
 export interface setPassportDataErrorsOptions {
     /** User identifier */
     user_id: Integer;
@@ -5444,6 +5590,7 @@ export interface PassportElementErrorUnspecified {
     message: String;
 }
 /** Use this method to send a game. On success, the sent Message is returned. */
+/** @see {@link sendGameResult} for method output */
 export interface sendGameOptions {
     /** Unique identifier of the business connection on behalf of which the message will be sent */
     business_connection_id?: String;
@@ -5482,6 +5629,7 @@ export interface Game {
     animation?: Animation;
 }
 /** Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False. */
+/** @see {@link setGameScoreResult} for method output */
 export interface setGameScoreOptions {
     /** User identifier */
     user_id: Integer;
@@ -5499,6 +5647,7 @@ export interface setGameScoreOptions {
     inline_message_id?: String;
 }
 /** Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects. */
+/** @see {@link getGameHighScoresResult} for method output */
 export interface getGameHighScoresOptions {
     /** Target user id */
     user_id: Integer;
@@ -5518,153 +5667,302 @@ export interface GameHighScore {
     /** Score */
     score: Integer;
 }
+/** Type returned from {@link getUpdatesOptions getUpdates} method */
 export type getUpdatesResult = Update[];
+/** Type returned from {@link setWebhookOptions setWebhook} method */
 export type setWebhookResult = Update | True;
+/** Type returned from {@link deleteWebhookOptions deleteWebhook} method */
 export type deleteWebhookResult = True;
+/** Type returned from {@link sendMessageOptions sendMessage} method */
 export type sendMessageResult = Message;
+/** Type returned from {@link forwardMessageOptions forwardMessage} method */
 export type forwardMessageResult = Message;
+/** Type returned from {@link forwardMessagesOptions forwardMessages} method */
 export type forwardMessagesResult = MessageId;
+/** Type returned from {@link copyMessageOptions copyMessage} method */
 export type copyMessageResult = MessageId;
+/** Type returned from {@link copyMessagesOptions copyMessages} method */
 export type copyMessagesResult = MessageId;
+/** Type returned from {@link sendPhotoOptions sendPhoto} method */
 export type sendPhotoResult = Message;
+/** Type returned from {@link sendAudioOptions sendAudio} method */
 export type sendAudioResult = Message;
+/** Type returned from {@link sendDocumentOptions sendDocument} method */
 export type sendDocumentResult = Message;
+/** Type returned from {@link sendVideoOptions sendVideo} method */
 export type sendVideoResult = Message;
+/** Type returned from {@link sendAnimationOptions sendAnimation} method */
 export type sendAnimationResult = Message;
+/** Type returned from {@link sendVoiceOptions sendVoice} method */
 export type sendVoiceResult = Audio | Message;
+/** Type returned from {@link sendVideoNoteOptions sendVideoNote} method */
 export type sendVideoNoteResult = Message;
+/** Type returned from {@link sendPaidMediaOptions sendPaidMedia} method */
 export type sendPaidMediaResult = Message;
+/** Type returned from {@link sendMediaGroupOptions sendMediaGroup} method */
 export type sendMediaGroupResult = Message;
+/** Type returned from {@link sendLocationOptions sendLocation} method */
 export type sendLocationResult = Message;
+/** Type returned from {@link sendVenueOptions sendVenue} method */
 export type sendVenueResult = Message;
+/** Type returned from {@link sendContactOptions sendContact} method */
 export type sendContactResult = Message;
+/** Type returned from {@link sendPollOptions sendPoll} method */
 export type sendPollResult = Message;
+/** Type returned from {@link sendChecklistOptions sendChecklist} method */
 export type sendChecklistResult = Message;
+/** Type returned from {@link sendDiceOptions sendDice} method */
 export type sendDiceResult = Message;
+/** Type returned from {@link sendChatActionOptions sendChatAction} method */
 export type sendChatActionResult = True;
+/** Type returned from {@link setMessageReactionOptions setMessageReaction} method */
 export type setMessageReactionResult = True;
+/** Type returned from {@link getUserProfilePhotosOptions getUserProfilePhotos} method */
 export type getUserProfilePhotosResult = UserProfilePhotos;
+/** Type returned from {@link setUserEmojiStatusOptions setUserEmojiStatus} method */
 export type setUserEmojiStatusResult = True;
+/** Type returned from {@link getFileOptions getFile} method */
 export type getFileResult = File;
+/** Type returned from {@link banChatMemberOptions banChatMember} method */
 export type banChatMemberResult = True;
+/** Type returned from {@link unbanChatMemberOptions unbanChatMember} method */
 export type unbanChatMemberResult = True;
+/** Type returned from {@link restrictChatMemberOptions restrictChatMember} method */
 export type restrictChatMemberResult = True | True;
+/** Type returned from {@link promoteChatMemberOptions promoteChatMember} method */
 export type promoteChatMemberResult = True;
+/** Type returned from {@link setChatAdministratorCustomTitleOptions setChatAdministratorCustomTitle} method */
 export type setChatAdministratorCustomTitleResult = True;
+/** Type returned from {@link banChatSenderChatOptions banChatSenderChat} method */
 export type banChatSenderChatResult = True;
+/** Type returned from {@link unbanChatSenderChatOptions unbanChatSenderChat} method */
 export type unbanChatSenderChatResult = True;
+/** Type returned from {@link setChatPermissionsOptions setChatPermissions} method */
 export type setChatPermissionsResult = True;
+/** Type returned from {@link exportChatInviteLinkOptions exportChatInviteLink} method */
 export type exportChatInviteLinkResult = String;
+/** Type returned from {@link createChatInviteLinkOptions createChatInviteLink} method */
 export type createChatInviteLinkResult = ChatInviteLink;
+/** Type returned from {@link editChatInviteLinkOptions editChatInviteLink} method */
 export type editChatInviteLinkResult = ChatInviteLink;
+/** Type returned from {@link createChatSubscriptionInviteLinkOptions createChatSubscriptionInviteLink} method */
 export type createChatSubscriptionInviteLinkResult = ChatInviteLink;
+/** Type returned from {@link editChatSubscriptionInviteLinkOptions editChatSubscriptionInviteLink} method */
 export type editChatSubscriptionInviteLinkResult = ChatInviteLink;
+/** Type returned from {@link revokeChatInviteLinkOptions revokeChatInviteLink} method */
 export type revokeChatInviteLinkResult = ChatInviteLink;
+/** Type returned from {@link approveChatJoinRequestOptions approveChatJoinRequest} method */
 export type approveChatJoinRequestResult = True;
+/** Type returned from {@link declineChatJoinRequestOptions declineChatJoinRequest} method */
 export type declineChatJoinRequestResult = True;
+/** Type returned from {@link setChatPhotoOptions setChatPhoto} method */
 export type setChatPhotoResult = True;
+/** Type returned from {@link deleteChatPhotoOptions deleteChatPhoto} method */
 export type deleteChatPhotoResult = True;
+/** Type returned from {@link setChatTitleOptions setChatTitle} method */
 export type setChatTitleResult = True;
+/** Type returned from {@link setChatDescriptionOptions setChatDescription} method */
 export type setChatDescriptionResult = True;
+/** Type returned from {@link pinChatMessageOptions pinChatMessage} method */
 export type pinChatMessageResult = True;
+/** Type returned from {@link unpinChatMessageOptions unpinChatMessage} method */
 export type unpinChatMessageResult = True;
+/** Type returned from {@link unpinAllChatMessagesOptions unpinAllChatMessages} method */
 export type unpinAllChatMessagesResult = True;
+/** Type returned from {@link leaveChatOptions leaveChat} method */
 export type leaveChatResult = True;
+/** Type returned from {@link getChatOptions getChat} method */
 export type getChatResult = ChatFullInfo;
+/** Type returned from {@link getChatAdministratorsOptions getChatAdministrators} method */
 export type getChatAdministratorsResult = ChatMember[];
+/** Type returned from {@link getChatMemberCountOptions getChatMemberCount} method */
 export type getChatMemberCountResult = Int;
+/** Type returned from {@link getChatMemberOptions getChatMember} method */
 export type getChatMemberResult = ChatMember;
+/** Type returned from {@link setChatStickerSetOptions setChatStickerSet} method */
 export type setChatStickerSetResult = True;
+/** Type returned from {@link deleteChatStickerSetOptions deleteChatStickerSet} method */
 export type deleteChatStickerSetResult = True;
+/** Type returned from {@link createForumTopicOptions createForumTopic} method */
 export type createForumTopicResult = ForumTopic;
+/** Type returned from {@link editForumTopicOptions editForumTopic} method */
 export type editForumTopicResult = True;
+/** Type returned from {@link closeForumTopicOptions closeForumTopic} method */
 export type closeForumTopicResult = True;
+/** Type returned from {@link reopenForumTopicOptions reopenForumTopic} method */
 export type reopenForumTopicResult = True;
+/** Type returned from {@link deleteForumTopicOptions deleteForumTopic} method */
 export type deleteForumTopicResult = True;
+/** Type returned from {@link unpinAllForumTopicMessagesOptions unpinAllForumTopicMessages} method */
 export type unpinAllForumTopicMessagesResult = True;
+/** Type returned from {@link editGeneralForumTopicOptions editGeneralForumTopic} method */
 export type editGeneralForumTopicResult = True;
+/** Type returned from {@link closeGeneralForumTopicOptions closeGeneralForumTopic} method */
 export type closeGeneralForumTopicResult = True;
+/** Type returned from {@link reopenGeneralForumTopicOptions reopenGeneralForumTopic} method */
 export type reopenGeneralForumTopicResult = True;
+/** Type returned from {@link hideGeneralForumTopicOptions hideGeneralForumTopic} method */
 export type hideGeneralForumTopicResult = True;
+/** Type returned from {@link unhideGeneralForumTopicOptions unhideGeneralForumTopic} method */
 export type unhideGeneralForumTopicResult = True;
+/** Type returned from {@link unpinAllGeneralForumTopicMessagesOptions unpinAllGeneralForumTopicMessages} method */
 export type unpinAllGeneralForumTopicMessagesResult = True;
+/** Type returned from {@link answerCallbackQueryOptions answerCallbackQuery} method */
 export type answerCallbackQueryResult = True;
+/** Type returned from {@link getUserChatBoostsOptions getUserChatBoosts} method */
 export type getUserChatBoostsResult = UserChatBoosts;
+/** Type returned from {@link getBusinessConnectionOptions getBusinessConnection} method */
 export type getBusinessConnectionResult = BusinessConnection;
+/** Type returned from {@link setMyCommandsOptions setMyCommands} method */
 export type setMyCommandsResult = True;
+/** Type returned from {@link deleteMyCommandsOptions deleteMyCommands} method */
 export type deleteMyCommandsResult = True;
+/** Type returned from {@link getMyCommandsOptions getMyCommands} method */
 export type getMyCommandsResult = BotCommand[];
+/** Type returned from {@link setMyNameOptions setMyName} method */
 export type setMyNameResult = True;
+/** Type returned from {@link getMyNameOptions getMyName} method */
 export type getMyNameResult = BotName;
+/** Type returned from {@link setMyDescriptionOptions setMyDescription} method */
 export type setMyDescriptionResult = True;
+/** Type returned from {@link getMyDescriptionOptions getMyDescription} method */
 export type getMyDescriptionResult = BotDescription;
+/** Type returned from {@link setMyShortDescriptionOptions setMyShortDescription} method */
 export type setMyShortDescriptionResult = True;
+/** Type returned from {@link getMyShortDescriptionOptions getMyShortDescription} method */
 export type getMyShortDescriptionResult = BotShortDescription;
+/** Type returned from {@link setChatMenuButtonOptions setChatMenuButton} method */
 export type setChatMenuButtonResult = True;
+/** Type returned from {@link getChatMenuButtonOptions getChatMenuButton} method */
 export type getChatMenuButtonResult = MenuButton;
+/** Type returned from {@link setMyDefaultAdministratorRightsOptions setMyDefaultAdministratorRights} method */
 export type setMyDefaultAdministratorRightsResult = True;
+/** Type returned from {@link getMyDefaultAdministratorRightsOptions getMyDefaultAdministratorRights} method */
 export type getMyDefaultAdministratorRightsResult = ChatAdministratorRights;
+/** Type returned from {@link editMessageTextOptions editMessageText} method */
 export type editMessageTextResult = Message | True;
+/** Type returned from {@link editMessageCaptionOptions editMessageCaption} method */
 export type editMessageCaptionResult = Message | True;
+/** Type returned from {@link editMessageMediaOptions editMessageMedia} method */
 export type editMessageMediaResult = Message | True;
+/** Type returned from {@link editMessageLiveLocationOptions editMessageLiveLocation} method */
 export type editMessageLiveLocationResult = Message | True;
+/** Type returned from {@link stopMessageLiveLocationOptions stopMessageLiveLocation} method */
 export type stopMessageLiveLocationResult = Message | True;
+/** Type returned from {@link editMessageChecklistOptions editMessageChecklist} method */
 export type editMessageChecklistResult = Message;
+/** Type returned from {@link editMessageReplyMarkupOptions editMessageReplyMarkup} method */
 export type editMessageReplyMarkupResult = Message | True;
+/** Type returned from {@link stopPollOptions stopPoll} method */
 export type stopPollResult = Poll;
+/** Type returned from {@link deleteMessageOptions deleteMessage} method */
 export type deleteMessageResult = True;
+/** Type returned from {@link deleteMessagesOptions deleteMessages} method */
 export type deleteMessagesResult = True;
+/** Type returned from {@link sendGiftOptions sendGift} method */
 export type sendGiftResult = True;
+/** Type returned from {@link giftPremiumSubscriptionOptions giftPremiumSubscription} method */
 export type giftPremiumSubscriptionResult = Gifts | True;
+/** Type returned from {@link verifyUserOptions verifyUser} method */
 export type verifyUserResult = True;
+/** Type returned from {@link verifyChatOptions verifyChat} method */
 export type verifyChatResult = True;
+/** Type returned from {@link removeUserVerificationOptions removeUserVerification} method */
 export type removeUserVerificationResult = True;
+/** Type returned from {@link removeChatVerificationOptions removeChatVerification} method */
 export type removeChatVerificationResult = True;
+/** Type returned from {@link readBusinessMessageOptions readBusinessMessage} method */
 export type readBusinessMessageResult = True;
+/** Type returned from {@link deleteBusinessMessagesOptions deleteBusinessMessages} method */
 export type deleteBusinessMessagesResult = True;
+/** Type returned from {@link setBusinessAccountNameOptions setBusinessAccountName} method */
 export type setBusinessAccountNameResult = True;
+/** Type returned from {@link setBusinessAccountUsernameOptions setBusinessAccountUsername} method */
 export type setBusinessAccountUsernameResult = True;
+/** Type returned from {@link setBusinessAccountBioOptions setBusinessAccountBio} method */
 export type setBusinessAccountBioResult = True;
+/** Type returned from {@link setBusinessAccountProfilePhotoOptions setBusinessAccountProfilePhoto} method */
 export type setBusinessAccountProfilePhotoResult = True;
+/** Type returned from {@link removeBusinessAccountProfilePhotoOptions removeBusinessAccountProfilePhoto} method */
 export type removeBusinessAccountProfilePhotoResult = True;
+/** Type returned from {@link setBusinessAccountGiftSettingsOptions setBusinessAccountGiftSettings} method */
 export type setBusinessAccountGiftSettingsResult = True;
+/** Type returned from {@link getBusinessAccountStarBalanceOptions getBusinessAccountStarBalance} method */
 export type getBusinessAccountStarBalanceResult = StarAmount;
+/** Type returned from {@link transferBusinessAccountStarsOptions transferBusinessAccountStars} method */
 export type transferBusinessAccountStarsResult = True;
+/** Type returned from {@link getBusinessAccountGiftsOptions getBusinessAccountGifts} method */
 export type getBusinessAccountGiftsResult = OwnedGifts;
+/** Type returned from {@link convertGiftToStarsOptions convertGiftToStars} method */
 export type convertGiftToStarsResult = True;
+/** Type returned from {@link upgradeGiftOptions upgradeGift} method */
 export type upgradeGiftResult = True;
+/** Type returned from {@link transferGiftOptions transferGift} method */
 export type transferGiftResult = True;
+/** Type returned from {@link postStoryOptions postStory} method */
 export type postStoryResult = Story;
+/** Type returned from {@link editStoryOptions editStory} method */
 export type editStoryResult = Story;
+/** Type returned from {@link deleteStoryOptions deleteStory} method */
 export type deleteStoryResult = True;
+/** Type returned from {@link sendStickerOptions sendSticker} method */
 export type sendStickerResult = Message;
+/** Type returned from {@link getStickerSetOptions getStickerSet} method */
 export type getStickerSetResult = StickerSet;
+/** Type returned from {@link getCustomEmojiStickersOptions getCustomEmojiStickers} method */
 export type getCustomEmojiStickersResult = Sticker[];
+/** Type returned from {@link uploadStickerFileOptions uploadStickerFile} method */
 export type uploadStickerFileResult = File;
+/** Type returned from {@link createNewStickerSetOptions createNewStickerSet} method */
 export type createNewStickerSetResult = True;
+/** Type returned from {@link addStickerToSetOptions addStickerToSet} method */
 export type addStickerToSetResult = True;
+/** Type returned from {@link setStickerPositionInSetOptions setStickerPositionInSet} method */
 export type setStickerPositionInSetResult = True;
+/** Type returned from {@link deleteStickerFromSetOptions deleteStickerFromSet} method */
 export type deleteStickerFromSetResult = True;
+/** Type returned from {@link replaceStickerInSetOptions replaceStickerInSet} method */
 export type replaceStickerInSetResult = True;
+/** Type returned from {@link setStickerEmojiListOptions setStickerEmojiList} method */
 export type setStickerEmojiListResult = True;
+/** Type returned from {@link setStickerKeywordsOptions setStickerKeywords} method */
 export type setStickerKeywordsResult = True;
+/** Type returned from {@link setStickerMaskPositionOptions setStickerMaskPosition} method */
 export type setStickerMaskPositionResult = True;
+/** Type returned from {@link setStickerSetTitleOptions setStickerSetTitle} method */
 export type setStickerSetTitleResult = True;
+/** Type returned from {@link setStickerSetThumbnailOptions setStickerSetThumbnail} method */
 export type setStickerSetThumbnailResult = True;
+/** Type returned from {@link setCustomEmojiStickerSetThumbnailOptions setCustomEmojiStickerSetThumbnail} method */
 export type setCustomEmojiStickerSetThumbnailResult = True;
+/** Type returned from {@link deleteStickerSetOptions deleteStickerSet} method */
 export type deleteStickerSetResult = True;
+/** Type returned from {@link answerInlineQueryOptions answerInlineQuery} method */
 export type answerInlineQueryResult = True;
+/** Type returned from {@link answerWebAppQueryOptions answerWebAppQuery} method */
 export type answerWebAppQueryResult = SentWebAppMessage;
+/** Type returned from {@link savePreparedInlineMessageOptions savePreparedInlineMessage} method */
 export type savePreparedInlineMessageResult = PreparedInlineMessage;
+/** Type returned from {@link sendInvoiceOptions sendInvoice} method */
 export type sendInvoiceResult = Message;
+/** Type returned from {@link createInvoiceLinkOptions createInvoiceLink} method */
 export type createInvoiceLinkResult = String;
+/** Type returned from {@link answerShippingQueryOptions answerShippingQuery} method */
 export type answerShippingQueryResult = Update | True;
+/** Type returned from {@link answerPreCheckoutQueryOptions answerPreCheckoutQuery} method */
 export type answerPreCheckoutQueryResult = Update | True;
+/** Type returned from {@link getStarTransactionsOptions getStarTransactions} method */
 export type getStarTransactionsResult = StarTransactions;
+/** Type returned from {@link refundStarPaymentOptions refundStarPayment} method */
 export type refundStarPaymentResult = True;
+/** Type returned from {@link editUserStarSubscriptionOptions editUserStarSubscription} method */
 export type editUserStarSubscriptionResult = True;
+/** Type returned from {@link setPassportDataErrorsOptions setPassportDataErrors} method */
 export type setPassportDataErrorsResult = True;
+/** Type returned from {@link sendGameOptions sendGame} method */
 export type sendGameResult = Message;
+/** Type returned from {@link setGameScoreOptions setGameScore} method */
 export type setGameScoreResult = Message | True;
+/** Type returned from {@link getGameHighScoresOptions getGameHighScores} method */
 export type getGameHighScoresResult = GameHighScore[];
 export {};

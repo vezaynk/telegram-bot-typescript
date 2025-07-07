@@ -45,7 +45,14 @@ For each method there are two types exported. For input, the format is `[methodN
 
 ## Future Work
 
-Future work will involve keeping up to date with documentation changes, fixing errors in output, and evolving the JSDoc annotation quality.
+Keeping up to date with documentation changes, fixing errors in output, and evolving the JSDoc annotation quality.
+
+I'm looking to setup GitHub Actions CI for:
+
+- Generating types on a recurring basis, and opening PRs if a change is detected.
+- Creating a new release when such a PR is merged
+
+Contributions welcome for all of the above!
 
 ## License
 
