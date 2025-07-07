@@ -98,35 +98,35 @@ fetch("https://core.telegram.org/bots/api")
       // console.log("--");
     }
 
-    // const allTypeAliases = sourceFile
-    //   .getTypeAliases()
-    //   .map((type) => type.getName());
-    // const allInterfaces = sourceFile
-    //   .getInterfaces()
-    //   .map((type) => type.getName());
+    const allTypeAliases = sourceFile
+      .getTypeAliases()
+      .map((type) => type.getName());
+    const allInterfaces = sourceFile
+      .getInterfaces()
+      .map((type) => type.getName());
 
-    // const allTypeNames = [...allTypeAliases, ...allInterfaces];
+    const allTypeNames = [...allTypeAliases, ...allInterfaces];
 
-    // const allTypeNamesSet = new Set(allTypeNames);
+    const allTypeNamesSet = new Set(allTypeNames);
 
-    // const filteredReturnTypeReconciliation = returnTypeReconciliation.map(
-    //   (r) => ({
-    //     name: r.name,
-    //     possibleReturnTypes: r.possibleReturnTypes
-    //       .filter((t) => allTypeNamesSet.has(t.name) || t.isChecked)
-    //       .map((t) => t.name),
-    //   })
-    // );
+    const filteredReturnTypeReconciliation = returnTypeReconciliation.map(
+      (r) => ({
+        name: r.name,
+        possibleReturnTypes: r.possibleReturnTypes
+          .filter((t) => allTypeNamesSet.has(t.name) || t.isChecked)
+          .map((t) => t.name),
+      })
+    );
 
-    for (const returnType of returnTypeReconciliation) {
-      // console.log({
-      //   name: returnType.name,
-      //   type: returnType.possibleReturnTypes.join(" | "),
-      // });
+    for (const returnType of filteredReturnTypeReconciliation) {
+      console.log({
+        name: returnType.name,
+        type: returnType.possibleReturnTypes.join(" | "),
+      });
 
       sourceFile.addTypeAlias({
         name: returnType.name,
-        type: "unknown", //returnType.possibleReturnTypes.join(" | "),
+        type: returnType.possibleReturnTypes.join(" | "),
       });
     }
 
@@ -300,6 +300,15 @@ function extractTypeDefinitions(document: HTMLElement) {
         parameters,
         possibleReturnTypes: processedPossibleReturnTypes,
       };
+    })
+    .filter((d) => {
+      switch (d.name) {
+        case "Accent colors":
+        case "Profile accent colors":
+          return false;
+      }
+
+      return true;
     });
 
   return structuredData;
