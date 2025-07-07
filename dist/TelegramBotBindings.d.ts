@@ -2118,41 +2118,41 @@ export interface BotCommand {
 /** Represents the default scope of bot commands. Default commands are used if no commands with a narrower scope are specified for the user. */
 export interface BotCommandScopeDefault {
     /** Scope type, must be default */
-    type: String;
+    type: "default";
 }
 /** Represents the scope of bot commands, covering all private chats. */
 export interface BotCommandScopeAllPrivateChats {
     /** Scope type, must be all_private_chats */
-    type: String;
+    type: "all_private_chats";
 }
 /** Represents the scope of bot commands, covering all group and supergroup chats. */
 export interface BotCommandScopeAllGroupChats {
     /** Scope type, must be all_group_chats */
-    type: String;
+    type: "all_group_chats";
 }
 /** Represents the scope of bot commands, covering all group and supergroup chat administrators. */
 export interface BotCommandScopeAllChatAdministrators {
     /** Scope type, must be all_chat_administrators */
-    type: String;
+    type: "all_chat_administrators";
 }
 /** Represents the scope of bot commands, covering a specific chat. */
 export interface BotCommandScopeChat {
     /** Scope type, must be chat */
-    type: String;
+    type: "chat";
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Represents the scope of bot commands, covering all administrators of a specific group or supergroup chat. */
 export interface BotCommandScopeChatAdministrators {
     /** Scope type, must be chat_administrators */
-    type: String;
+    type: "chat_administrators";
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
 }
 /** Represents the scope of bot commands, covering a specific member of a group or supergroup chat. */
 export interface BotCommandScopeChatMember {
     /** Scope type, must be chat_member */
-    type: String;
+    type: "chat_member";
     /** Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Integer | String;
     /** Unique identifier of the target user */
@@ -2176,12 +2176,12 @@ export interface BotShortDescription {
 /** Represents a menu button, which opens the bot's list of commands. */
 export interface MenuButtonCommands {
     /** Type of the button, must be commands */
-    type: String;
+    type: "commands";
 }
 /** Represents a menu button, which launches a Web App. */
 export interface MenuButtonWebApp {
     /** Type of the button, must be web_app */
-    type: String;
+    type: "web_app";
     /** Text on the button */
     text: String;
     /** Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Alternatively, a t.me link to a Web App of the bot can be specified in the object instead of the Web App's URL, in which case the Web App will be opened as if the user pressed the link. */
@@ -2190,7 +2190,7 @@ export interface MenuButtonWebApp {
 /** Describes that no specific value for the menu button was set. */
 export interface MenuButtonDefault {
     /** Type of the button, must be default */
-    type: String;
+    type: "default";
 }
 /** The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user. */
 export interface ChatBoostSourcePremium {
@@ -2318,7 +2318,7 @@ export interface ResponseParameters {
 /** Represents a photo to be sent. */
 export interface InputMediaPhoto {
     /** Type of the result, must be photo */
-    type: String;
+    type: "photo";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
     /** Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
@@ -2335,7 +2335,7 @@ export interface InputMediaPhoto {
 /** Represents a video to be sent. */
 export interface InputMediaVideo {
     /** Type of the result, must be video */
-    type: String;
+    type: "video";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
     /** Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
@@ -2366,7 +2366,7 @@ export interface InputMediaVideo {
 /** Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent. */
 export interface InputMediaAnimation {
     /** Type of the result, must be animation */
-    type: String;
+    type: "animation";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
     /** Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
@@ -2391,7 +2391,7 @@ export interface InputMediaAnimation {
 /** Represents an audio file to be treated as music to be sent. */
 export interface InputMediaAudio {
     /** Type of the result, must be audio */
-    type: String;
+    type: "audio";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
     /** Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
@@ -2412,7 +2412,7 @@ export interface InputMediaAudio {
 /** Represents a general file to be sent. */
 export interface InputMediaDocument {
     /** Type of the result, must be document */
-    type: String;
+    type: "document";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
     /** Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
@@ -2429,14 +2429,14 @@ export interface InputMediaDocument {
 /** The paid media to send is a photo. */
 export interface InputPaidMediaPhoto {
     /** Type of the media, must be photo */
-    type: String;
+    type: "photo";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
 }
 /** The paid media to send is a video. */
 export interface InputPaidMediaVideo {
     /** Type of the media, must be video */
-    type: String;
+    type: "video";
     /** File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files » */
     media: String;
     /** Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
@@ -2457,14 +2457,14 @@ export interface InputPaidMediaVideo {
 /** A static profile photo in the .JPG format. */
 export interface InputProfilePhotoStatic {
     /** Type of the profile photo, must be static */
-    type: String;
+    type: "static";
     /** The static profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
     photo: String;
 }
 /** An animated profile photo in the MPEG4 format. */
 export interface InputProfilePhotoAnimated {
     /** Type of the profile photo, must be animated */
-    type: String;
+    type: "animated";
     /** The animated profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
     animation: String;
     /** Optional. Timestamp in seconds of the frame that will be used as the static profile photo. Defaults to 0.0. */
@@ -2473,14 +2473,14 @@ export interface InputProfilePhotoAnimated {
 /** Describes a photo to post as a story. */
 export interface InputStoryContentPhoto {
     /** Type of the content, must be photo */
-    type: String;
+    type: "photo";
     /** The photo to post as a story. The photo must be of the size 1080x1920 and must not exceed 10 MB. The photo can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
     photo: String;
 }
 /** Describes a video to post as a story. */
 export interface InputStoryContentVideo {
     /** Type of the content, must be video */
-    type: String;
+    type: "video";
     /** The video to post as a story. The video must be of the size 720x1280, streamable, encoded with H.265 codec, with key frames added each second in the MPEG4 format, and must not exceed 30 MB. The video can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the video was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files » */
     video: String;
     /** Optional. Precise duration of the video in seconds; 0-60 */
@@ -4377,7 +4377,7 @@ export interface InlineQueryResultsButton {
 /** Represents a link to an article or web page. */
 export interface InlineQueryResultArticle {
     /** Type of the result, must be article */
-    type: String;
+    type: "article";
     /** Unique identifier for this result, 1-64 Bytes */
     id: String;
     /** Title of the result */
@@ -4400,7 +4400,7 @@ export interface InlineQueryResultArticle {
 /** Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo. */
 export interface InlineQueryResultPhoto {
     /** Type of the result, must be photo */
-    type: String;
+    type: "photo";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB */
@@ -4431,7 +4431,7 @@ export interface InlineQueryResultPhoto {
 /** Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation. */
 export interface InlineQueryResultGif {
     /** Type of the result, must be gif */
-    type: String;
+    type: "gif";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid URL for the GIF file */
@@ -4464,7 +4464,7 @@ export interface InlineQueryResultGif {
 /** Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default, this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation. */
 export interface InlineQueryResultMpeg4Gif {
     /** Type of the result, must be mpeg4_gif */
-    type: String;
+    type: "mpeg4_gif";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid URL for the MPEG4 file */
@@ -4497,7 +4497,7 @@ export interface InlineQueryResultMpeg4Gif {
 /** Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video. */
 export interface InlineQueryResultVideo {
     /** Type of the result, must be video */
-    type: String;
+    type: "video";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid URL for the embedded video player or video file */
@@ -4532,7 +4532,7 @@ export interface InlineQueryResultVideo {
 /** Represents a link to an MP3 audio file. By default, this audio file will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the audio. */
 export interface InlineQueryResultAudio {
     /** Type of the result, must be audio */
-    type: String;
+    type: "audio";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid URL for the audio file */
@@ -4557,7 +4557,7 @@ export interface InlineQueryResultAudio {
 /** Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message. */
 export interface InlineQueryResultVoice {
     /** Type of the result, must be voice */
-    type: String;
+    type: "voice";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid URL for the voice recording */
@@ -4580,7 +4580,7 @@ export interface InlineQueryResultVoice {
 /** Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using this method. */
 export interface InlineQueryResultDocument {
     /** Type of the result, must be document */
-    type: String;
+    type: "document";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** Title for the result */
@@ -4611,7 +4611,7 @@ export interface InlineQueryResultDocument {
 /** Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location. */
 export interface InlineQueryResultLocation {
     /** Type of the result, must be location */
-    type: String;
+    type: "location";
     /** Unique identifier for this result, 1-64 Bytes */
     id: String;
     /** Location latitude in degrees */
@@ -4642,7 +4642,7 @@ export interface InlineQueryResultLocation {
 /** Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the venue. */
 export interface InlineQueryResultVenue {
     /** Type of the result, must be venue */
-    type: String;
+    type: "venue";
     /** Unique identifier for this result, 1-64 Bytes */
     id: String;
     /** Latitude of the venue location in degrees */
@@ -4675,7 +4675,7 @@ export interface InlineQueryResultVenue {
 /** Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the contact. */
 export interface InlineQueryResultContact {
     /** Type of the result, must be contact */
-    type: String;
+    type: "contact";
     /** Unique identifier for this result, 1-64 Bytes */
     id: String;
     /** Contact's phone number */
@@ -4700,7 +4700,7 @@ export interface InlineQueryResultContact {
 /** Represents a Game. */
 export interface InlineQueryResultGame {
     /** Type of the result, must be game */
-    type: String;
+    type: "game";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** Short name of the game */
@@ -4711,7 +4711,7 @@ export interface InlineQueryResultGame {
 /** Represents a link to a photo stored on the Telegram servers. By default, this photo will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo. */
 export interface InlineQueryResultCachedPhoto {
     /** Type of the result, must be photo */
-    type: String;
+    type: "photo";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier of the photo */
@@ -4736,7 +4736,7 @@ export interface InlineQueryResultCachedPhoto {
 /** Represents a link to an animated GIF file stored on the Telegram servers. By default, this animated GIF file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with specified content instead of the animation. */
 export interface InlineQueryResultCachedGif {
     /** Type of the result, must be gif */
-    type: String;
+    type: "gif";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier for the GIF file */
@@ -4759,7 +4759,7 @@ export interface InlineQueryResultCachedGif {
 /** Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers. By default, this animated MPEG-4 file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation. */
 export interface InlineQueryResultCachedMpeg4Gif {
     /** Type of the result, must be mpeg4_gif */
-    type: String;
+    type: "mpeg4_gif";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier for the MPEG4 file */
@@ -4782,7 +4782,7 @@ export interface InlineQueryResultCachedMpeg4Gif {
 /** Represents a link to a sticker stored on the Telegram servers. By default, this sticker will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the sticker. */
 export interface InlineQueryResultCachedSticker {
     /** Type of the result, must be sticker */
-    type: String;
+    type: "sticker";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier of the sticker */
@@ -4795,7 +4795,7 @@ export interface InlineQueryResultCachedSticker {
 /** Represents a link to a file stored on the Telegram servers. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. */
 export interface InlineQueryResultCachedDocument {
     /** Type of the result, must be document */
-    type: String;
+    type: "document";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** Title for the result */
@@ -4818,7 +4818,7 @@ export interface InlineQueryResultCachedDocument {
 /** Represents a link to a video file stored on the Telegram servers. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video. */
 export interface InlineQueryResultCachedVideo {
     /** Type of the result, must be video */
-    type: String;
+    type: "video";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier for the video file */
@@ -4843,7 +4843,7 @@ export interface InlineQueryResultCachedVideo {
 /** Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the voice message. */
 export interface InlineQueryResultCachedVoice {
     /** Type of the result, must be voice */
-    type: String;
+    type: "voice";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier for the voice message */
@@ -4864,7 +4864,7 @@ export interface InlineQueryResultCachedVoice {
 /** Represents a link to an MP3 audio file stored on the Telegram servers. By default, this audio file will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the audio. */
 export interface InlineQueryResultCachedAudio {
     /** Type of the result, must be audio */
-    type: String;
+    type: "audio";
     /** Unique identifier for this result, 1-64 bytes */
     id: String;
     /** A valid file identifier for the audio file */
