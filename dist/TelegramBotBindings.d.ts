@@ -46,8 +46,6 @@ export type InputPaidMedia = InputPaidMediaPhoto | InputPaidMediaVideo;
 export type InputProfilePhoto = InputProfilePhotoStatic | InputProfilePhotoAnimated;
 /** This object describes the content of a story to post. Currently, it can be one of */
 export type InputStoryContent = InputStoryContentPhoto | InputStoryContentVideo;
-/** Currently, the following colors in RGB format are in use for profile backgrounds. */
-export type Profile = accent;
 /** This object represents one result of an inline query. Telegram clients currently support results of the following 20 types: */
 export type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedDocument | InlineQueryResultCachedGif | InlineQueryResultCachedMpeg4Gif | InlineQueryResultCachedPhoto | InlineQueryResultCachedSticker | InlineQueryResultCachedVideo | InlineQueryResultCachedVoice | InlineQueryResultArticle | InlineQueryResultAudio | InlineQueryResultContact | InlineQueryResultGame | InlineQueryResultDocument | InlineQueryResultGif | InlineQueryResultLocation | InlineQueryResultMpeg4Gif | InlineQueryResultPhoto | InlineQueryResultVenue | InlineQueryResultVideo | InlineQueryResultVoice;
 /** This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types: */

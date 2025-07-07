@@ -157,23 +157,36 @@ function extractTypeAliases(document: HTMLElement) {
     };
   });
 
-  return nodes.map((node) => {
-    invariant(node.nameNode);
-    invariant(node.descriptionNode);
-    invariant(node.aliasesNode);
-    const name = node.nameNode.textContent;
-    const description = node.descriptionNode.textContent;
-    const aliases = [...node.aliasesNode.querySelectorAll("li")].map(
-      (li) => li.textContent
-    );
+  return (
+    nodes
+      .map((node) => {
+        invariant(node.nameNode);
+        invariant(node.descriptionNode);
+        invariant(node.aliasesNode);
+        const name = node.nameNode.textContent;
+        const description = node.descriptionNode.textContent;
+        const aliases = [...node.aliasesNode.querySelectorAll("li")].map(
+          (li) => li.textContent
+        );
 
-    if (aliases.length === 0) aliases.push("Record<string, never>");
-    return {
-      name,
-      description,
-      aliases,
-    };
-  });
+        if (aliases.length === 0) aliases.push("Record<string, never>");
+        return {
+          name,
+          description,
+          aliases,
+        };
+      })
+      // This data is informational, hard to parse, and not necessary to include in the API types
+      .filter((d) => {
+        switch (d.name) {
+          case "Accent colors":
+          case "Profile accent colors":
+            return false;
+        }
+
+        return true;
+      })
+  );
 }
 
 function extractTypeDefinitions(document: HTMLElement) {
@@ -300,15 +313,6 @@ function extractTypeDefinitions(document: HTMLElement) {
         parameters,
         possibleReturnTypes: processedPossibleReturnTypes,
       };
-    })
-    .filter((d) => {
-      switch (d.name) {
-        case "Accent colors":
-        case "Profile accent colors":
-          return false;
-      }
-
-      return true;
     });
 
   return structuredData;
