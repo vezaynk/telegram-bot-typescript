@@ -2,6 +2,11 @@
 
 Auto-generated types for the Telegram bot API. Produced by regularly parsing documentation and published as an NPM package.
 
+```sh
+# Install as dev dependency (this only provides type definitions, remember?)
+npm install -D telegram-bot-typescript
+```
+
 ## Why?
 
 Telegram provides a rich API for implementing bots. While Telegram publishes detailed documentation, they do not provide machine-readable schemas. This has resulted in most libraries being unable to provide full type coverage for their methods.
