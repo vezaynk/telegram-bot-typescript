@@ -621,7 +621,7 @@ export interface ReplyParameters {
 /** The message was originally sent by a known user. */
 export interface MessageOriginUser {
     /** Type of the message origin, always “user” */
-    type: String;
+    type: "user";
     /** Date the message was sent originally in Unix time */
     date: Integer;
     /** User that sent the message originally */
@@ -630,7 +630,7 @@ export interface MessageOriginUser {
 /** The message was originally sent by an unknown user. */
 export interface MessageOriginHiddenUser {
     /** Type of the message origin, always “hidden_user” */
-    type: String;
+    type: "hidden_user";
     /** Date the message was sent originally in Unix time */
     date: Integer;
     /** Name of the user that sent the message originally */
@@ -639,7 +639,7 @@ export interface MessageOriginHiddenUser {
 /** The message was originally sent on behalf of a chat to a group chat. */
 export interface MessageOriginChat {
     /** Type of the message origin, always “chat” */
-    type: String;
+    type: "chat";
     /** Date the message was sent originally in Unix time */
     date: Integer;
     /** Chat that sent the message originally */
@@ -650,7 +650,7 @@ export interface MessageOriginChat {
 /** The message was originally sent to a channel chat. */
 export interface MessageOriginChannel {
     /** Type of the message origin, always “channel” */
-    type: String;
+    type: "channel";
     /** Date the message was sent originally in Unix time */
     date: Integer;
     /** Channel chat to which the message was originally sent */
@@ -800,7 +800,7 @@ export interface PaidMediaInfo {
 /** The paid media isn't available before the payment. */
 export interface PaidMediaPreview {
     /** Type of the paid media, always “preview” */
-    type: String;
+    type: "preview";
     /** Optional. Media width as defined by the sender */
     width?: Integer;
     /** Optional. Media height as defined by the sender */
@@ -811,14 +811,14 @@ export interface PaidMediaPreview {
 /** The paid media is a photo. */
 export interface PaidMediaPhoto {
     /** Type of the paid media, always “photo” */
-    type: String;
+    type: "photo";
     /** The photo */
     photo: PhotoSize[];
 }
 /** The paid media is a video. */
 export interface PaidMediaVideo {
     /** Type of the paid media, always “video” */
-    type: String;
+    type: "video";
     /** The video */
     video: Video;
 }
@@ -1031,14 +1031,14 @@ export interface ChatBoostAdded {
 /** The background is filled using the selected color. */
 export interface BackgroundFillSolid {
     /** Type of the background fill, always “solid” */
-    type: String;
+    type: "solid";
     /** The color of the background fill in the RGB24 format */
     color: Integer;
 }
 /** The background is a gradient fill. */
 export interface BackgroundFillGradient {
     /** Type of the background fill, always “gradient” */
-    type: String;
+    type: "gradient";
     /** Top color of the gradient in the RGB24 format */
     top_color: Integer;
     /** Bottom color of the gradient in the RGB24 format */
@@ -1049,14 +1049,14 @@ export interface BackgroundFillGradient {
 /** The background is a freeform gradient that rotates after every message in the chat. */
 export interface BackgroundFillFreeformGradient {
     /** Type of the background fill, always “freeform_gradient” */
-    type: String;
+    type: "freeform_gradient";
     /** A list of the 3 or 4 base colors that are used to generate the freeform gradient in the RGB24 format */
     colors: Integer[];
 }
 /** The background is automatically filled based on the selected colors. */
 export interface BackgroundTypeFill {
     /** Type of the background, always “fill” */
-    type: String;
+    type: "fill";
     /** The background fill */
     fill: BackgroundFill;
     /** Dimming of the background in dark themes, as a percentage; 0-100 */
@@ -1065,7 +1065,7 @@ export interface BackgroundTypeFill {
 /** The background is a wallpaper in the JPEG format. */
 export interface BackgroundTypeWallpaper {
     /** Type of the background, always “wallpaper” */
-    type: String;
+    type: "wallpaper";
     /** Document with the wallpaper */
     document: Document;
     /** Dimming of the background in dark themes, as a percentage; 0-100 */
@@ -1078,7 +1078,7 @@ export interface BackgroundTypeWallpaper {
 /** The background is a .PNG or .TGV (gzipped subset of SVG with MIME type “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user. */
 export interface BackgroundTypePattern {
     /** Type of the background, always “pattern” */
-    type: String;
+    type: "pattern";
     /** Document with the pattern */
     document: Document;
     /** The background fill that is combined with the pattern */
@@ -1093,7 +1093,7 @@ export interface BackgroundTypePattern {
 /** The background is taken directly from a built-in chat theme. */
 export interface BackgroundTypeChatTheme {
     /** Type of the background, always “chat_theme” */
-    type: String;
+    type: "chat_theme";
     /** Name of the chat theme, which is usually an emoji */
     theme_name: String;
 }
@@ -1801,7 +1801,7 @@ export interface LocationAddress {
 /** Describes a story area pointing to a location. Currently, a story can have up to 10 location areas. */
 export interface StoryAreaTypeLocation {
     /** Type of the area, always “location” */
-    type: String;
+    type: "location";
     /** Location latitude in degrees */
     latitude: Float;
     /** Location longitude in degrees */
@@ -1812,7 +1812,7 @@ export interface StoryAreaTypeLocation {
 /** Describes a story area pointing to a suggested reaction. Currently, a story can have up to 5 suggested reaction areas. */
 export interface StoryAreaTypeSuggestedReaction {
     /** Type of the area, always “suggested_reaction” */
-    type: String;
+    type: "suggested_reaction";
     /** Type of the reaction */
     reaction_type: ReactionType;
     /** Optional. Pass True if the reaction area has a dark background */
@@ -1823,14 +1823,14 @@ export interface StoryAreaTypeSuggestedReaction {
 /** Describes a story area pointing to an HTTP or tg:// link. Currently, a story can have up to 3 link areas. */
 export interface StoryAreaTypeLink {
     /** Type of the area, always “link” */
-    type: String;
+    type: "link";
     /** HTTP or tg:// URL to be opened when the area is clicked */
     url: String;
 }
 /** Describes a story area containing weather information. Currently, a story can have up to 3 weather areas. */
 export interface StoryAreaTypeWeather {
     /** Type of the area, always “weather” */
-    type: String;
+    type: "weather";
     /** Temperature, in degree Celsius */
     temperature: Float;
     /** Emoji representing the weather */
@@ -1841,7 +1841,7 @@ export interface StoryAreaTypeWeather {
 /** Describes a story area pointing to a unique gift. Currently, a story can have at most 1 unique gift area. */
 export interface StoryAreaTypeUniqueGift {
     /** Type of the area, always “unique_gift” */
-    type: String;
+    type: "unique_gift";
     /** Unique name of the gift */
     name: String;
 }
@@ -1862,21 +1862,21 @@ export interface ChatLocation {
 /** The reaction is based on an emoji. */
 export interface ReactionTypeEmoji {
     /** Type of the reaction, always “emoji” */
-    type: String;
+    type: "emoji";
     /** Reaction emoji. Currently, it can be one of "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" */
     emoji: String;
 }
 /** The reaction is based on a custom emoji. */
 export interface ReactionTypeCustomEmoji {
     /** Type of the reaction, always “custom_emoji” */
-    type: String;
+    type: "custom_emoji";
     /** Custom emoji identifier */
     custom_emoji_id: String;
 }
 /** The reaction is paid. */
 export interface ReactionTypePaid {
     /** Type of the reaction, always “paid” */
-    type: String;
+    type: "paid";
 }
 /** Represents a reaction added to a message along with the number of times it was added. */
 export interface ReactionCount {
@@ -2034,7 +2034,7 @@ export interface UniqueGiftInfo {
 /** Describes a regular gift owned by a user or a chat. */
 export interface OwnedGiftRegular {
     /** Type of the gift, always “regular” */
-    type: String;
+    type: "regular";
     /** Information about the regular gift */
     gift: Gift;
     /** Optional. Unique identifier of the gift for the bot; for gifts received on behalf of business accounts only */
@@ -2063,7 +2063,7 @@ export interface OwnedGiftRegular {
 /** Describes a unique gift received and owned by a user or a chat. */
 export interface OwnedGiftUnique {
     /** Type of the gift, always “unique” */
-    type: String;
+    type: "unique";
     /** Information about the unique gift */
     gift: UniqueGift;
     /** Optional. Unique identifier of the received gift for the bot; for gifts received on behalf of business accounts only */
@@ -5315,12 +5315,12 @@ export interface PaidMediaPurchased {
 /** The withdrawal is in progress. */
 export interface RevenueWithdrawalStatePending {
     /** Type of the state, always “pending” */
-    type: String;
+    type: "pending";
 }
 /** The withdrawal succeeded. */
 export interface RevenueWithdrawalStateSucceeded {
     /** Type of the state, always “succeeded” */
-    type: String;
+    type: "succeeded";
     /** Date the withdrawal was completed in Unix time */
     date: Integer;
     /** An HTTPS URL that can be used to see transaction details */
@@ -5329,7 +5329,7 @@ export interface RevenueWithdrawalStateSucceeded {
 /** The withdrawal failed and the transaction was refunded. */
 export interface RevenueWithdrawalStateFailed {
     /** Type of the state, always “failed” */
-    type: String;
+    type: "failed";
 }
 /** Contains information about the affiliate that received a commission via this transaction. */
 export interface AffiliateInfo {
@@ -5347,7 +5347,7 @@ export interface AffiliateInfo {
 /** Describes a transaction with a user. */
 export interface TransactionPartnerUser {
     /** Type of the transaction partner, always “user” */
-    type: String;
+    type: "user";
     /** Type of the transaction, currently one of “invoice_payment” for payments via invoices, “paid_media_payment” for payments for paid media, “gift_purchase” for gifts sent by the bot, “premium_purchase” for Telegram Premium subscriptions gifted by the bot, “business_account_transfer” for direct transfers from managed business accounts */
     transaction_type: String;
     /** Information about the user */
@@ -5370,7 +5370,7 @@ export interface TransactionPartnerUser {
 /** Describes a transaction with a chat. */
 export interface TransactionPartnerChat {
     /** Type of the transaction partner, always “chat” */
-    type: String;
+    type: "chat";
     /** Information about the chat */
     chat: Chat;
     /** Optional. The gift sent to the chat by the bot */
@@ -5379,7 +5379,7 @@ export interface TransactionPartnerChat {
 /** Describes the affiliate program that issued the affiliate commission received via this transaction. */
 export interface TransactionPartnerAffiliateProgram {
     /** Type of the transaction partner, always “affiliate_program” */
-    type: String;
+    type: "affiliate_program";
     /** Optional. Information about the bot that sponsored the affiliate program */
     sponsor_user?: User;
     /** The number of Telegram Stars received by the bot for each 1000 Telegram Stars received by the affiliate program sponsor from referred users */
@@ -5388,26 +5388,26 @@ export interface TransactionPartnerAffiliateProgram {
 /** Describes a withdrawal transaction with Fragment. */
 export interface TransactionPartnerFragment {
     /** Type of the transaction partner, always “fragment” */
-    type: String;
+    type: "fragment";
     /** Optional. State of the transaction if the transaction is outgoing */
     withdrawal_state?: RevenueWithdrawalState;
 }
 /** Describes a withdrawal transaction to the Telegram Ads platform. */
 export interface TransactionPartnerTelegramAds {
     /** Type of the transaction partner, always “telegram_ads” */
-    type: String;
+    type: "telegram_ads";
 }
 /** Describes a transaction with payment for paid broadcasting. */
 export interface TransactionPartnerTelegramApi {
     /** Type of the transaction partner, always “telegram_api” */
-    type: String;
+    type: "telegram_api";
     /** The number of successful requests that exceeded regular limits and were therefore billed */
     request_count: Integer;
 }
 /** Describes a transaction with an unknown source or recipient. */
 export interface TransactionPartnerOther {
     /** Type of the transaction partner, always “other” */
-    type: String;
+    type: "other";
 }
 /** Describes a Telegram Star transaction. Note that if the buyer initiates a chargeback with the payment provider from whom they acquired Stars (e.g., Apple, Google) following this transaction, the refunded Stars will be deducted from the bot's balance. This is outside of Telegram's control. */
 export interface StarTransaction {

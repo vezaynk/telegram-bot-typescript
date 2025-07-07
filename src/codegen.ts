@@ -267,9 +267,15 @@ function extractTypeDefinitions(document: HTMLElement) {
         propertyType = propertyType.replaceAll(", ", " | ");
 
         if (propertyName === "type") {
-          const result = /must be (.*)/.exec(propertyDescription);
-          if (result) {
-            const [, match] = result;
+          const mustBeStringMatch = /must be (.*)/.exec(propertyDescription);
+          if (mustBeStringMatch) {
+            const [, match] = mustBeStringMatch;
+            propertyType = `"${match}"`;
+          }
+
+          const alwaysMatch = /always “(.*)”/.exec(propertyDescription);
+          if (alwaysMatch) {
+            const [, match] = alwaysMatch;
             propertyType = `"${match}"`;
           }
         }
