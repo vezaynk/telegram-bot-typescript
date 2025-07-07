@@ -5,19 +5,26 @@ import { Project } from "ts-morph";
 fetch("https://core.telegram.org/bots/api")
   .then((r) => r.text())
   .then((apiHTML) => parse(apiHTML))
-  .then((document) => {
+  .then(async (document) => {
     const project = new Project({
       compilerOptions: {
         outDir: "dist",
         declaration: true,
-        emitDeclarationOnly: true,
       },
     });
 
-    const sourceFile = project.createSourceFile("TelegramBotBindings.ts");
+    const sourceFile = project.createSourceFile(
+      "TelegramBotBindings.ts",
+      {},
+      { overwrite: true }
+    );
 
     sourceFile.addTypeAlias({
       name: "Integer",
+      type: "number",
+    });
+    sourceFile.addTypeAlias({
+      name: "Int",
       type: "number",
     });
     sourceFile.addTypeAlias({
@@ -46,8 +53,18 @@ fetch("https://core.telegram.org/bots/api")
         name: entry.name,
         type: entry.aliases.join(" | "),
         docs: [entry.description],
+        isExported: true,
       });
     }
+
+    const returnTypeReconciliation: {
+      name: string;
+      possibleReturnTypes: {
+        name: string;
+        isChecked: boolean;
+      }[];
+    }[] = [];
+
     for (let entry of extractTypeDefinitions(document)) {
       const newInterface = sourceFile.addInterface({
         name: entry.isMethod ? entry.name + "Options" : entry.name,
@@ -55,16 +72,16 @@ fetch("https://core.telegram.org/bots/api")
         isExported: true,
       });
 
-      if (entry.returnType) {
-        sourceFile.addTypeAlias({
+      if (entry.isMethod && entry.possibleReturnTypes) {
+        returnTypeReconciliation.push({
           name: entry.name + "Result",
-          type: entry.returnType,
+          possibleReturnTypes: entry.possibleReturnTypes,
         });
       }
 
-      console.log("Type:", entry.name);
-      console.log("Description:", entry.description);
-      console.log("Parameters:");
+      // console.log("Type:", entry.name);
+      // console.log("Description:", entry.description);
+      // console.log("Parameters:");
       for (let param of entry.parameters) {
         newInterface.addProperty({
           name: param.name,
@@ -72,13 +89,45 @@ fetch("https://core.telegram.org/bots/api")
           type: param.type,
           hasQuestionToken: param.optional,
         });
-        console.log("\tName:", param.name);
-        console.log("\tType:", param.type);
-        console.log("\tOptional:", param.optional);
-        console.log("\tDescription:", param.description);
-        console.log("--");
+        // console.log("\tName:", param.name);
+        // console.log("\tType:", param.type);
+        // console.log("\tOptional:", param.optional);
+        // console.log("\tDescription:", param.description);
+        // console.log("--");
       }
-      console.log("--");
+      // console.log("--");
+    }
+
+    // const allTypeAliases = sourceFile
+    //   .getTypeAliases()
+    //   .map((type) => type.getName());
+    // const allInterfaces = sourceFile
+    //   .getInterfaces()
+    //   .map((type) => type.getName());
+
+    // const allTypeNames = [...allTypeAliases, ...allInterfaces];
+
+    // const allTypeNamesSet = new Set(allTypeNames);
+
+    // const filteredReturnTypeReconciliation = returnTypeReconciliation.map(
+    //   (r) => ({
+    //     name: r.name,
+    //     possibleReturnTypes: r.possibleReturnTypes
+    //       .filter((t) => allTypeNamesSet.has(t.name) || t.isChecked)
+    //       .map((t) => t.name),
+    //   })
+    // );
+
+    for (const returnType of returnTypeReconciliation) {
+      // console.log({
+      //   name: returnType.name,
+      //   type: returnType.possibleReturnTypes.join(" | "),
+      // });
+
+      sourceFile.addTypeAlias({
+        name: returnType.name,
+        type: "unknown", //returnType.possibleReturnTypes.join(" | "),
+      });
     }
 
     return project.emit();
@@ -213,20 +262,43 @@ function extractTypeDefinitions(document: HTMLElement) {
 
       const allDescription = description.join(" ");
 
-      let returnType: null | string = null;
+      const possibleReturnTypes = allDescription
+        .split(/[\s+.,]/)
+        .filter((w) => w)
+        .filter((c) => /[A-Z]/.test(c[0]));
 
-      const returnTypeTest1 = allDescription.match(/Returns (.*) on success/);
+      const processedPossibleReturnTypes = possibleReturnTypes.map(
+        (refName, index) => {
+          let name = refName;
+          let isChecked = false;
+          const mentionsArray = possibleReturnTypes[index - 1] === "Array";
 
-      if (returnTypeTest1) {
-        returnType = returnTypeTest1[1];
-      }
+          switch (refName) {
+            // Cheating here....
+            // There is a mention of "Array of Messages" instead of "Array of Message"
+            case "Messages":
+              name = "Message";
+              break;
+          }
+
+          if (mentionsArray) {
+            name = name + "[]";
+            isChecked = true;
+          }
+
+          return {
+            name,
+            isChecked,
+          };
+        }
+      );
 
       return {
         name,
         isMethod,
         description: description,
         parameters,
-        returnType,
+        possibleReturnTypes: processedPossibleReturnTypes,
       };
     });
 
