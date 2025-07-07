@@ -10,6 +10,7 @@ fetch("https://core.telegram.org/bots/api")
       compilerOptions: {
         outDir: "dist",
         declaration: true,
+        emitDeclarationOnly: true,
       },
     });
 
@@ -73,8 +74,12 @@ fetch("https://core.telegram.org/bots/api")
       });
 
       if (entry.isMethod && entry.possibleReturnTypes) {
+        const returnTypeName = entry.name + "Result";
+        newInterface.addJsDoc({
+          description: `@see {@link ${returnTypeName}}.`
+        })
         returnTypeReconciliation.push({
-          name: entry.name + "Result",
+          name: returnTypeName,
           possibleReturnTypes: entry.possibleReturnTypes,
         });
       }
@@ -127,10 +132,11 @@ fetch("https://core.telegram.org/bots/api")
       sourceFile.addTypeAlias({
         name: returnType.name,
         type: returnType.possibleReturnTypes.join(" | "),
+        isExported: true,
       });
     }
 
-    return project.emit();
+    await project.emit();
   });
 
 function extractTypeAliases(document: HTMLElement) {
